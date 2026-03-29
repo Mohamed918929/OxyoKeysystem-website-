@@ -1803,6 +1803,23 @@ body::after {
     }
   </style>
 
+  <!-- DEV RESET BUTTON -->
+  <button onclick="resetAll()" style="
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    margin:10px auto 0;width:calc(100% - 0px);max-width:430px;
+    padding:11px 20px;
+    background:rgba(255,50,50,0.08);
+    border:1px solid rgba(255,80,80,0.35);
+    border-radius:12px;
+    color:#ff6b6b;font-family:'Exo 2',sans-serif;font-size:0.78rem;font-weight:700;
+    letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;
+    position:relative;z-index:10;
+    transition:background 0.2s,border-color 0.2s;
+  " onmouseover="this.style.background='rgba(255,50,50,0.18)'"
+     onmouseout="this.style.background='rgba(255,50,50,0.08)'">
+    🔄 Reset Checkpoint (Dev)
+  </button>
+
 </div>
 
 
