@@ -55,6 +55,10 @@ body {
   position: relative;
 }
 
+/* ── CANVAS & LAYERS ── */
+
+
+/* Ambient glow orbs */
 .orb {
   position: fixed;
   border-radius: 50%;
@@ -91,6 +95,7 @@ body {
   66%     { transform: translate(-15px,20px) scale(0.95); }
 }
 
+/* Corner HUD brackets */
 .corner {
   position: fixed;
   width: 56px; height: 56px;
@@ -122,6 +127,7 @@ body {
 .corner.bl .corner-dot { bottom: -1px; left: -1px; }
 .corner.br .corner-dot { bottom: -1px; right: -1px; }
 
+/* ── PAGE CONTAINER ── */
 .page {
   position: relative;
   z-index: 10;
@@ -139,6 +145,7 @@ body {
   opacity: 0.7;
 }
 
+/* ── HEADER ── */
 .header {
   display: flex;
   align-items: center;
@@ -258,6 +265,7 @@ body {
   font-weight: 600;
 }
 
+/* ── MAIN CARD ── */
 .card {
   background: rgba(5,7,14,0.92);
   border: 1px solid var(--border2);
@@ -275,6 +283,7 @@ body {
   contain: layout style;
 }
 
+/* Animated top border glow */
 .card-shine {
   position: absolute;
   top: 0; left: 0; right: 0;
@@ -297,6 +306,7 @@ body {
   50%     { opacity: 1; filter: blur(0.5px); }
 }
 
+/* Animated border pulse */
 .card::before {
   content: '';
   position: absolute;
@@ -315,6 +325,7 @@ body {
   to   { opacity: 1; }
 }
 
+/* HUD corner brackets on card */
 .card-bracket {
   position: absolute;
   width: 16px; height: 16px;
@@ -405,6 +416,7 @@ body {
   line-height: 1.65;
 }
 
+/* ── PROGRESS ── */
 .prog-wrap {
   padding: 15px 22px;
   border-bottom: 1px solid var(--border);
@@ -470,11 +482,12 @@ body {
 }
 .prog-fill.tip-hidden::after { opacity: 0; }
 
+/* ── STEPS ── */
 .steps {
   padding: 4px 12px;
   position: relative;
 }
-
+/* Vertical connector line */
 .steps::before {
   content: '';
   position: absolute;
@@ -603,6 +616,7 @@ body {
   color: var(--green);
 }
 
+/* ── CARD BOTTOM ── */
 .card-bottom {
   padding: 16px 20px;
   border-top: 1px solid var(--border);
@@ -612,6 +626,7 @@ body {
   background: rgba(0,0,0,0.15);
 }
 
+/* ── KEY PANEL ── */
 .key-panel {
   display: none;
   flex-direction: column;
@@ -748,6 +763,7 @@ body {
 }
 .key-copy:active { transform: scale(0.95); }
 
+/* ── BUTTON ── */
 .btn {
   width: 100%;
   padding: 15px 22px;
@@ -834,6 +850,7 @@ body {
 .loading .btn-lbl { display: none; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* ── INFO CHIPS ── */
 .info-row { display: flex; gap: 8px; }
 .info-chip {
   flex: 1;
@@ -874,6 +891,7 @@ body {
   margin-top: 4px;
 }
 
+/* ── RIPPLE ── */
 .ripple {
   position: absolute;
   border-radius: 50%;
@@ -884,6 +902,7 @@ body {
 }
 @keyframes rippleOut { to { transform: scale(7); opacity: 0; } }
 
+/* ── FOOTER ── */
 .footer {
   margin-top: 14px;
   display: flex;
@@ -907,6 +926,7 @@ body {
 .f-link:hover { color: var(--cyan); text-shadow: 0 0 12px rgba(0,229,255,0.4); }
 .f-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--muted2); }
 
+/* ── VERIFY OVERLAY ── */
 .verify-overlay {
   position: fixed;
   inset: 0;
@@ -1072,6 +1092,7 @@ body {
 .verify-result.ok  { color: var(--green); text-shadow: 0 0 14px var(--green-glo); }
 .verify-result.bad { color: var(--mag); text-shadow: 0 0 14px rgba(255,0,110,0.5); }
 
+/* ── BLOCKED OVERLAY ── */
 .block-overlay {
   position: fixed;
   inset: 0;
@@ -1131,6 +1152,7 @@ body {
   letter-spacing: 0.1em;
 }
 
+/* ── ANIMATIONS ── */
 @keyframes fadeSlide {
   from { opacity: 0; transform: translateY(18px); filter: blur(3px); }
   to   { opacity: 1; transform: translateY(0); filter: blur(0); }
@@ -1145,6 +1167,8 @@ body {
   100% { filter: brightness(1) blur(0); }
 }
 
+
+/* ── BAN COUNTDOWN ── */
 .ban-timer {
   font-family: 'JetBrains Mono', monospace;
   font-size: 2rem;
@@ -1201,13 +1225,14 @@ body {
   opacity: 0.9;
 }
 
+/* ── MOBILE OPTIMIZATIONS ── */
 @media (max-width: 480px) {
   body { padding: 12px; }
   .heading { font-size: 1.35rem; }
   .card-top, .card-bottom, .prog-wrap { padding-left: 16px; padding-right: 16px; }
   .steps { padding-left: 6px; padding-right: 6px; }
   .verify-panel { padding: 24px 20px; }
-  
+  /* Disable heavy filters on mobile for performance */
   .card { backdrop-filter: blur(12px) saturate(1.2); -webkit-backdrop-filter: blur(12px) saturate(1.2); }
   .verify-backdrop { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
   
@@ -1220,10 +1245,16 @@ body {
   .key-txt { font-size: 0.76rem; letter-spacing: 0.06em; }
 }
 
+/* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; }
 }
 
+/* ══════════════════════════════════════════
+   ██ DESIGN OVERHAUL ██
+══════════════════════════════════════════ */
+
+/* -- Glowing grid overlay on bg -- */
 body::before {
   content: '';
   position: fixed;
@@ -1242,6 +1273,7 @@ body::before {
   to   { background-position: 44px 44px; }
 }
 
+/* -- Extra floating hex orb -- */
 body::after {
   content: '';
   position: fixed;
@@ -1260,6 +1292,7 @@ body::after {
   to   { transform: translate(-50%,-50%) scale(1.15); opacity: 1; }
 }
 
+/* -- Supercharged card -- */
 .card {
   background: linear-gradient(160deg, rgba(8,12,24,0.97) 0%, rgba(4,6,14,0.98) 100%) !important;
   border: 1px solid rgba(0,229,255,0.22) !important;
@@ -1272,6 +1305,7 @@ body::after {
     0 0 200px rgba(168,85,247,0.05) !important;
 }
 
+/* Animated rainbow border via conic gradient */
 .card::after {
   content: '';
   position: absolute;
@@ -1297,6 +1331,7 @@ body::after {
 @property --a { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
 @keyframes borderSpin { to { --a: 360deg; } }
 
+/* -- Holographic card shine -- */
 .card-shine {
   height: 2px !important;
   background: linear-gradient(90deg,
@@ -1317,6 +1352,7 @@ body::after {
   100% { opacity: 0.5; filter: blur(0.5px) brightness(1); }
 }
 
+/* -- Heading glitch effect -- */
 .heading-glow {
   background: linear-gradient(135deg, #00e5ff 0%, #00fff7 30%, #a855f7 60%, #00e5ff 100%) !important;
   background-size: 200% !important;
@@ -1329,6 +1365,7 @@ body::after {
   50%     { background-position: 100% 50%; }
 }
 
+/* -- Data stream left edge -- */
 .card-top::after {
   content: '';
   position: absolute;
@@ -1345,6 +1382,7 @@ body::after {
   100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
 }
 
+/* -- Progress bar plasma -- */
 .prog-track {
   height: 6px !important;
   background: rgba(0,229,255,0.06) !important;
@@ -1368,6 +1406,7 @@ body::after {
   to   { background-position: 200% 50%; }
 }
 
+/* -- Step ring double pulse -- */
 .step.active {
   background: linear-gradient(135deg, rgba(0,229,255,0.04) 0%, rgba(0,229,255,0.01) 100%) !important;
   border: 1px solid rgba(0,229,255,0.12) !important;
@@ -1389,6 +1428,7 @@ body::after {
   50%     { box-shadow: 0 0 0 6px rgba(0,229,255,0.15), 0 0 40px rgba(0,229,255,0.4), 0 0 70px rgba(0,229,255,0.15); }
 }
 
+/* -- Button redesign -- */
 .btn-primary {
   background: linear-gradient(135deg, #004d82 0%, #007acc 25%, #00b4e6 55%, var(--cyan3) 80%, #80ffff 100%) !important;
   letter-spacing: 0.12em !important;
@@ -1413,6 +1453,7 @@ body::after {
   transform: translateY(1px) scale(0.99) !important;
 }
 
+/* Scan line on button */
 .btn-primary::before {
   content: '' !important;
   position: absolute !important;
@@ -1428,6 +1469,7 @@ body::after {
   border-radius: inherit !important;
 }
 
+/* -- Step badge enhanced -- */
 .step.active .step-badge {
   background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(0,229,255,0.05)) !important;
   border: 1px solid rgba(0,229,255,0.4) !important;
@@ -1439,6 +1481,7 @@ body::after {
   50%     { box-shadow: 0 0 24px rgba(0,229,255,0.4), 0 0 40px rgba(0,229,255,0.15); transform: scale(1.04); }
 }
 
+/* -- Corner brackets animated -- */
 .card-bracket { opacity: 0.7 !important; animation: bracketPulse 4s ease-in-out infinite !important; }
 .card-bracket.tr { animation-delay: 1s !important; }
 .card-bracket.bl { animation-delay: 2s !important; }
@@ -1448,6 +1491,7 @@ body::after {
   50%     { opacity: 0.9; filter: drop-shadow(0 0 4px var(--cyan)); }
 }
 
+/* -- Key box neon -- */
 .key-box {
   background: linear-gradient(135deg, rgba(0,255,136,0.05) 0%, rgba(0,255,136,0.02) 100%) !important;
   border: 1px solid rgba(0,255,136,0.35) !important;
@@ -1463,11 +1507,13 @@ body::after {
   50%     { text-shadow: 0 0 28px rgba(0,255,136,0.95), 0 0 55px rgba(0,255,136,0.5), 0 0 90px rgba(0,255,136,0.25); }
 }
 
+/* -- Info chips glow on hover -- */
 .info-chip:hover {
   box-shadow: 0 0 20px rgba(0,229,255,0.12), 0 0 40px rgba(0,229,255,0.05) !important;
   transform: translateY(-2px) !important;
 }
 
+/* -- Live pill enhanced -- */
 .live-pill {
   background: linear-gradient(135deg, rgba(0,255,136,0.08), rgba(0,255,136,0.03)) !important;
   border: 1px solid rgba(0,255,136,0.35) !important;
@@ -1482,6 +1528,7 @@ body::after {
   box-shadow: 0 0 12px var(--green), 0 0 25px var(--green-glo), 0 0 40px rgba(0,255,136,0.3) !important;
 }
 
+/* -- Eyebrow tag glow -- */
 .eyebrow-tag {
   animation: tagGlow 3s ease-in-out infinite alternate !important;
 }
@@ -1491,6 +1538,7 @@ body::after {
 @keyframes tagGlow  { to { box-shadow: 0 0 14px rgba(0,229,255,0.35); border-color: rgba(0,229,255,0.5); } }
 @keyframes tagGlow2 { to { box-shadow: 0 0 14px rgba(168,85,247,0.35); border-color: rgba(168,85,247,0.5); } }
 
+/* -- Vertical step connector animated -- */
 .steps::before {
   background: linear-gradient(to bottom,
     transparent,
@@ -1506,22 +1554,32 @@ body::after {
   50%     { opacity: 1; filter: drop-shadow(0 0 3px var(--cyan)); }
 }
 
+/* -- Card bottom dark gradient -- */
 .card-bottom {
   background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.35)) !important;
   border-top: 1px solid rgba(0,229,255,0.08) !important;
   padding: 18px 22px !important;
 }
 
+/* -- Heading size boost -- */
 .heading { font-size: 1.8rem !important; }
 </style>
 </head>
 <body>
+
+
+
+
+
+
+
 
 <div class="corner tl"><div class="corner-dot"></div></div>
 <div class="corner tr"><div class="corner-dot"></div></div>
 <div class="corner bl"><div class="corner-dot"></div></div>
 <div class="corner br"><div class="corner-dot"></div></div>
 
+<!-- BLOCKED OVERLAY -->
 <div class="block-overlay" id="block-overlay">
   <div class="block-panel">
     <div class="block-icon">
@@ -1541,6 +1599,7 @@ body::after {
   </div>
 </div>
 
+<!-- VERIFY OVERLAY -->
 <div class="verify-overlay" id="verify-overlay">
   <div class="verify-backdrop"></div>
   <div class="verify-panel">
@@ -1569,6 +1628,7 @@ body::after {
   </div>
 </div>
 
+<!-- MAIN PAGE -->
 <div class="page" id="page">
 
   <div class="header">
@@ -1673,28 +1733,6 @@ body::after {
             </svg>
           </button>
         </div>
-
-        
-        <div style="margin-top:10px;">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:0.48rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:5px;opacity:0.7;">
-            Loader Script
-          </div>
-          <div class="key-box" id="loader-box" style="cursor:pointer;border-color:rgba(0,229,255,0.15);" onclick="copyLoader()" title="Copy loader script">
-            <svg class="key-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <polyline points="5,3 1,8 5,13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <polyline points="11,3 15,8 11,13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <line x1="9" y1="2" x2="7" y2="14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-            </svg>
-            <span class="key-txt" id="loader-display" style="font-size:0.58rem;opacity:0.85;letter-spacing:0;">loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/139ba746db5a2b1843cef8f9f0414da7717adc941e7d71361e2c49bbc9ebf272/download"))()</span>
-            <button class="key-copy" title="Copy loader" style="pointer-events:none;">
-              <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                <rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
-                <path d="M2 11V2H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-
       </div>
 
       <button class="btn btn-primary" id="main-btn" onclick="handleClick(event)">
@@ -1707,6 +1745,7 @@ body::after {
           Start Checkpoint 1
         </span>
       </button>
+
 
       <div class="info-row">
         <div class="info-chip">
@@ -1738,7 +1777,7 @@ body::after {
     <div class="f-sep"></div>
   </div>
 
-  
+  <!-- Premium CTA Button -->
   <a href="./store.html" style="
     display:flex;align-items:center;justify-content:center;gap:8px;
     margin:14px auto 0;width:calc(100% - 0px);max-width:430px;
@@ -1766,8 +1805,11 @@ body::after {
 
 </div>
 
-<script>
 
+<script>
+/* ╔══════════════════════════════════════════════════════╗
+   ║  CONFIG — عدّل هذا القسم فقط                       ║
+   ╚══════════════════════════════════════════════════════╝ */
 const CFG = {
   MIN_TAB_HIDDEN_MS: 9000,
   BAN_DURATION_MS:  60000,
@@ -1777,6 +1819,15 @@ const CFG = {
   ],
 };
 
+/* ════════════════════════════════════════════════════════
+   CANVAS BACKGROUND — mobile-adaptive
+════════════════════════════════════════════════════════ */
+
+
+
+/* ════════════════════════════════════════════════════════
+   RISK ENGINE — نظام تراكم درجات الخطر (نقطة 10 + 20)
+════════════════════════════════════════════════════════ */
 const RISK = (function() {
   let _score = 0;
   const _log  = [];
@@ -1817,6 +1868,10 @@ const RISK = (function() {
   };
 })();
 
+
+/* ════════════════════════════════════════════════════════
+   SESSION SECRET — يُولَّد مرة لكل جلسة
+════════════════════════════════════════════════════════ */
 const _SS_SECRET_KEY = 'ox_ss';
 let _sessionSecret = (function() {
   try {
@@ -1831,9 +1886,13 @@ let _sessionSecret = (function() {
   } catch(e) { return Math.random().toString(36).substr(2,32); }
 })();
 
+
+/* ════════════════════════════════════════════════════════
+   SECURITY ENGINE — v7 (enhanced)
+════════════════════════════════════════════════════════ */
 const SEC = (function(){
 
-  
+  /* Capture ORIGINAL storage methods before any override */
   const _nativeLS = { set: localStorage.setItem.bind(localStorage),
                       get: localStorage.getItem.bind(localStorage),
                       del: localStorage.removeItem.bind(localStorage) };
@@ -1841,7 +1900,7 @@ const SEC = (function(){
                       get: sessionStorage.getItem.bind(sessionStorage),
                       del: sessionStorage.removeItem.bind(sessionStorage) };
 
-  
+  /* ── Fallback hash (FNV-1a double) ── */
   function fallbackHash(str) {
     let h = 0x811c9dc5 >>> 0;
     for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
@@ -1850,7 +1909,7 @@ const SEC = (function(){
     return (h >>> 0).toString(16).padStart(8,'0') + (h2 >>> 0).toString(16).padStart(8,'0');
   }
 
-  
+  /* ── Rate limiter ── */
   const _rateBuckets = {};
   function rateAllow(key, maxPerWindow, windowMs) {
     const now = Date.now();
@@ -1861,7 +1920,7 @@ const SEC = (function(){
     return true;
   }
 
-  
+  /* ── HMAC-SHA256 via SubtleCrypto ── */
   async function hmac(secret, data) {
     try {
       const enc = new TextEncoder();
@@ -1872,7 +1931,7 @@ const SEC = (function(){
     } catch(e) { return fallbackHash(secret + data); }
   }
 
-  
+  /* ── Stable Device ID ── */
   const DID_KEY = 'ox_did';
   function getDeviceId() {
     let did = _nativeLS.get(DID_KEY);
@@ -1885,7 +1944,7 @@ const SEC = (function(){
     return did;
   }
 
-  
+  /* ── Enhanced Fingerprint (نقطة 12) ── */
   let _fp = null;
   function getFingerprint() {
     if (_fp) return _fp;
@@ -1929,7 +1988,7 @@ const SEC = (function(){
     return _fp;
   }
 
-  
+  /* ── Bot / Automation Detection (نقطة 9) ── */
   function detectBot() {
     const flags = [];
     if (navigator.webdriver === true)                                    flags.push('webdriver');
@@ -1954,7 +2013,7 @@ const SEC = (function(){
     return flags;
   }
 
-  
+  /* ── Behavioral Analysis (نقطة 9 + 19) ── */
   let _botScore = 0;
   let _hasMouse = false, _hasTouch = false, _hasKeyboard = false;
   let _mouseEvents = 0, _scrollEvents = 0, _keyEvents = 0;
@@ -1992,7 +2051,7 @@ const SEC = (function(){
     if (_mouseEvents < 3 && elapsed > 3500 && !_hasTouch && !isMobileDevice) score += 28;
     if (elapsed < 400)                      score += 55;
 
-    
+    // Mouse linearity check
     if (_mousePath.length >= 6) {
       let linear = 0;
       for (let i = 1; i < _mousePath.length - 1; i++) {
@@ -2002,7 +2061,7 @@ const SEC = (function(){
       if (linear / (_mousePath.length - 2) > 0.88) score += 22;
     }
 
-    
+    // Mouse speed uniformity (bots move at constant speed)
     if (_mousePath.length >= 8) {
       const speeds = [];
       for (let i = 1; i < _mousePath.length; i++) {
@@ -2016,7 +2075,7 @@ const SEC = (function(){
       if (variance < 0.01 && mean > 0) score += 30;
     }
 
-    
+    // Click pattern uniformity (bots click at fixed intervals)
     if (_clickTs.length >= 3) {
       const intervals = [];
       for (let i = 1; i < _clickTs.length; i++) intervals.push(_clickTs[i] - _clickTs[i-1]);
@@ -2025,7 +2084,7 @@ const SEC = (function(){
       if (stdDev < 5 && intervals.length >= 2) score += 35;
     }
 
-    
+    // Keyboard timing uniformity
     if (_keyIntervals.length >= 5) {
       const mean = _keyIntervals.reduce((a,b) => a+b, 0) / _keyIntervals.length;
       const stdDev = Math.sqrt(_keyIntervals.reduce((s,v) => s + Math.pow(v-mean,2), 0) / _keyIntervals.length);
@@ -2035,7 +2094,7 @@ const SEC = (function(){
     return score + _botScore;
   }
 
-  
+  /* ── Storage Keys ── */
   const SK = {
     phase:   'ox7_ph',
     sig:     'ox7_sg',
@@ -2049,7 +2108,7 @@ const SEC = (function(){
     riskLog: 'ox7_rl',
   };
 
-  
+  /* ── XOR obfuscation helper ── */
   function _xorEncode(str, key) {
     let out = '';
     for (let i = 0; i < str.length; i++)
@@ -2066,7 +2125,7 @@ const SEC = (function(){
     } catch(e) { return ''; }
   }
 
-  
+  /* ── Save (one-way chained HMAC — نقطة 23) ── */
   async function saveSecure(ph, key, exp, startTs, prevSig) {
     const fp = getFingerprint();
     const nonce = crypto.getRandomValues
@@ -2074,7 +2133,7 @@ const SEC = (function(){
       : Math.random().toString(36).substr(2,32);
     const ts = startTs || 0;
     const riskSnapshot = RISK.score().toString();
-    
+    // Chain previous sig into payload (one-way approval)
     const chain = prevSig || 'genesis';
     const payload = `${ph}|${key||''}|${exp||0}|${nonce}|${fp}|${ts}|${chain}|${riskSnapshot}`;
     const sig = await hmac(fp + '_oxyo_v7_' + _sessionSecret, payload);
@@ -2172,10 +2231,10 @@ const SEC = (function(){
     try { _nativeLS.del('ox_tls'); _nativeLS.del('ox_hpt'); } catch(e) {}
   }
 
-  
+  /* ── DevTools Detection — disabled ── */
   let _devtoolsOpen = false, _devtoolsStrikes = 0;
 
-  
+  /* ── Honeypot Trap ── */
   const HONEY_KEY = 'ox_hpt';
   const _hk = _sessionSecret.slice(4, 12);
   const HONEY_VAL = _xorEncode('0x' + Math.random().toString(16).slice(2,14), _hk);
@@ -2193,7 +2252,7 @@ const SEC = (function(){
     return false;
   }
 
-  
+  /* ── Anti-replay nonce pool ── */
   const _usedNonces = new Set();
   function useNonce(nonce) {
     if (_usedNonces.has(nonce)) { RISK.add(50, 'nonce_replay'); return false; }
@@ -2218,6 +2277,11 @@ const SEC = (function(){
   };
 })();
 
+
+/* ════════════════════════════════════════════════════════
+   INTERNAL BLOCK MESSAGES — generic only (نقطة 14)
+   السبب الحقيقي يروح للـ RISK log فقط
+════════════════════════════════════════════════════════ */
 const _GENERIC_MESSAGES = [
   'Security check failed. Please try again later.',
   'Session verification could not be completed.',
@@ -2235,7 +2299,7 @@ function _genericMessage() { return _GENERIC_MESSAGES[Math.floor(Math.random() *
 
 function _internalBlock(internalReason, internalCode) {
   RISK.recordPenalty(internalReason);
-  
+  // Show ONLY generic message to user
   document.getElementById('block-title').textContent = _genericTitle();
   document.getElementById('block-msg').textContent   = _genericMessage();
   document.getElementById('block-code').textContent  = '';
@@ -2248,10 +2312,17 @@ function _internalBlock(internalReason, internalCode) {
   SEC.clearAll();
 }
 
+/* ════════════════════════════════════════════════════════
+   BLOCK SYSTEM (backward compat wrapper)
+════════════════════════════════════════════════════════ */
 function blockSession(title, msg, code) {
   _internalBlock(code || 'block_session', code || '');
 }
 
+
+/* ════════════════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════════════════ */
 let phase = 0;
 let generatedKey = '';
 let keyExp = 0;
@@ -2262,6 +2333,12 @@ let _stateReady = false;
 let _lastLoadSig = '';
 let _verifyFailCount = 0;
 
+
+
+/* ════════════════════════════════════════════════════════
+   PAGE VISIBILITY TRACKING
+   أقوى حماية — تكشف إذا ما راحوا للصفحة أصلاً
+════════════════════════════════════════════════════════ */
 const VIS = (function() {
   let _hiddenTs   = 0;
   let _returnTs   = 0;
@@ -2269,16 +2346,16 @@ const VIS = (function() {
   let _wentHidden = false;
   let _hiddenPhase = -1;
 
-  
-  
-  
-  
+  // ── Restore state from external-link navigation ──
+  // When user navigates to an external checkpoint link and returns,
+  // the page reloads and loses all in-memory state.
+  // We save nav info in sessionStorage before leaving and restore it here.
   try {
     const raw = localStorage.getItem('ox_vis_nav');
     if (raw) {
       const nav = JSON.parse(raw);
       const elapsed = Date.now() - (nav.leftAt || 0);
-      if (elapsed > 0 && elapsed < 600000) { 
+      if (elapsed > 0 && elapsed < 600000) { // sanity: within 10 min
         _wentHidden  = true;
         _hiddenPhase = nav.phase;
         _hiddenMs    = elapsed;
@@ -2301,15 +2378,20 @@ const VIS = (function() {
   }, { passive: true });
 
   return {
-    
+    // هل التاب اتخفى أثناء الفاز المعطى؟
     wentHiddenDuring: (p) => _wentHidden && _hiddenPhase === p,
-    
+    // كم ملي ثانية كان مخفياً؟
     hiddenMs: () => _hiddenMs,
-    
+    // صفّر بعد كل checkpoint
     reset: () => { _wentHidden = false; _hiddenPhase = -1; _hiddenMs = 0; _hiddenTs = 0; }
   };
 })();
 
+
+/* ════════════════════════════════════════════════════════
+   ENHANCED BAN SYSTEM — obfuscated multi-location (نقطة 11)
+   البان مشفر XOR + موزع على 3 مفاتيح + checksum
+════════════════════════════════════════════════════════ */
 const _BAN_KEYS  = ['ox_b1', 'ox_b2', 'ox_b3'];
 const _BAN_SUM   = 'ox_bc';
 const _BAN_GRADE = 'ox_bg';
@@ -2331,7 +2413,7 @@ function _banChecksum(until) {
 
 function setBan(grade) {
   const _grade = grade || 1;
-  
+  // Escalating duration (نقطة 24)
   const durations = [
     CFG.BAN_DURATION_MS,
     CFG.BAN_DURATION_MS * 2,
@@ -2354,7 +2436,7 @@ function setBan(grade) {
 
 function checkBan() {
   try {
-    
+    // Must find value in at least 2 of 3 keys and checksum must match
     const vals = _BAN_KEYS.map(k => localStorage.getItem(k));
     const sums = vals.map(v => _decodeBan(v || ''));
     const storedSum = localStorage.getItem(_BAN_SUM) || '';
@@ -2366,7 +2448,7 @@ function checkBan() {
       if (decoded > Date.now()) { until = Math.max(until, decoded); matches++; }
     }
 
-    
+    // Tripwire: if only 1 key remains (tampered), treat as active ban
     if (matches === 1 && until > 0) {
       RISK.add(80, 'ban_storage_tampered');
       SEC.bumpAttempt(); SEC.bumpAttempt();
@@ -2376,7 +2458,7 @@ function checkBan() {
     }
 
     if (matches >= 2 && until > Date.now()) {
-      
+      // Verify checksum
       const expectedSum = _banChecksum(until);
       if (storedSum !== expectedSum) {
         RISK.add(70, 'ban_checksum_fail');
@@ -2387,7 +2469,7 @@ function checkBan() {
       return true;
     }
 
-    
+    // Check sessionStorage fallback
     const ssEnc = sessionStorage.getItem(_BAN_KEYS[0]);
     if (ssEnc) {
       const decoded = _decodeBan(ssEnc);
@@ -2399,12 +2481,12 @@ function checkBan() {
 
 function hideBanScreen() {
   if (banInterval) { clearInterval(banInterval); banInterval = null; }
-  
+  // Only allow skip if ban actually expired
   const vals = _BAN_KEYS.map(k => {
     try { return _decodeBan(localStorage.getItem(k) || ''); } catch(e) { return 0; }
   });
   const maxUntil = Math.max(...vals);
-  if (maxUntil > Date.now()) return; 
+  if (maxUntil > Date.now()) return; // Silently refuse — ban still active
 
   _BAN_KEYS.forEach(k => { try { localStorage.removeItem(k); } catch(e) {} });
   try { localStorage.removeItem(_BAN_SUM); } catch(e) {}
@@ -2423,7 +2505,7 @@ function hideBanScreen() {
 }
 
 function skipBan() {
-  
+  // Clear all ban storage and hide screen immediately
   _BAN_KEYS.forEach(k => { try { localStorage.removeItem(k); } catch(e) {} });
   try { localStorage.removeItem(_BAN_SUM); } catch(e) {}
   try { localStorage.removeItem(_BAN_GRADE); } catch(e) {}
@@ -2475,6 +2557,11 @@ function showBanScreen(until) {
   }, 1000);
 }
 
+
+/* ════════════════════════════════════════════════════════
+   SELF-INTEGRITY ENGINE (نقطة 16)
+   يحفظ hash لكل دالة حساسة ويتحقق منها دورياً
+════════════════════════════════════════════════════════ */
 const INTEGRITY = (function() {
   const _hashes = {};
   let _captured = false;
@@ -2508,6 +2595,11 @@ const INTEGRITY = (function() {
   return { capture, verify };
 })();
 
+
+/* ════════════════════════════════════════════════════════
+   DECOY FUNCTION TRAPS (نقطة 17)
+   أي استدعاء من الكونسول لهذه الدوال = ban فوري
+════════════════════════════════════════════════════════ */
 const _CALL_TOKEN = (function() {
   const t = crypto.getRandomValues
     ? Array.from(crypto.getRandomValues(new Uint8Array(20))).map(b=>b.toString(16).padStart(2,'0')).join('')
@@ -2525,6 +2617,7 @@ function _verifiedCall(token) {
   }
 }
 
+// Stack depth check — console calls have shallower stacks
 function _isFromConsole() {
   try {
     const stack = new Error().stack || '';
@@ -2532,6 +2625,7 @@ function _isFromConsole() {
   } catch(e) { return false; }
 }
 
+// Decoy traps — look like useful bypass functions but actually ban
 (function installDecoys() {
   const _trap = (name) => {
     try {
@@ -2550,6 +2644,10 @@ function _isFromConsole() {
    'skipCheckpoint', 'forcePhase', 'ox_skip', 'debugKey', 'getAccess'].forEach(_trap);
 })();
 
+
+/* ════════════════════════════════════════════════════════
+   ANTI-USERSCRIPT: Detect Tampermonkey/Greasemonkey (نقطة 9)
+════════════════════════════════════════════════════════ */
 function detectUserscript() {
   const indicators = [
     typeof GM !== 'undefined',
@@ -2561,7 +2659,7 @@ function detectUserscript() {
     typeof exportFunction !== 'undefined',
     typeof GM !== 'undefined' && typeof GM.info !== 'undefined',
     window.hasOwnProperty('VM_info'),
-    
+    // Additional indicators
     typeof GM_xmlhttpRequest !== 'undefined',
     typeof GM_addStyle !== 'undefined',
     typeof GM_getResourceText !== 'undefined',
@@ -2571,12 +2669,16 @@ function detectUserscript() {
   return indicators.some(Boolean);
 }
 
+/* ════════════════════════════════════════════════════════
+   PATTERN MONITOR — detects replay & automation (نقطة 19)
+   Runs periodically to catch patterns over time
+════════════════════════════════════════════════════════ */
 (function startPatternMonitor() {
   let _pageLoadCount = 0;
   let _lastCheckTs = Date.now();
   let _rapidLoadStrikes = 0;
 
-  
+  // Track rapid reload pattern
   try {
     const reloadKey = 'ox_rl_ct';
     const reloadTs  = 'ox_rl_ts';
@@ -2595,7 +2697,7 @@ function detectUserscript() {
     localStorage.setItem(reloadKey, _pageLoadCount.toString());
     localStorage.setItem(reloadTs, now.toString());
 
-    
+    // Ban on extreme reload count
     if (_pageLoadCount >= 20) {
       setTimeout(() => {
         setBan(parseInt(localStorage.getItem(_BAN_GRADE) || '2'));
@@ -2604,14 +2706,14 @@ function detectUserscript() {
     }
   } catch(e) {}
 
-  
+  // Periodic behavioral monitoring
   setInterval(() => {
     if (!_stateReady || phase === 0 || phase === 4) return;
     const bs = SEC.behavioralScore();
     if (bs >= 100) {
       RISK.add(bs / 2, 'behavioral_periodic');
     }
-    
+    // Check risk action periodically
     if (RISK.action() === 'hard_ban') {
       setBan(parseInt(localStorage.getItem(_BAN_GRADE) || '2'));
       _internalBlock('risk_accumulated', 'RA');
@@ -2619,11 +2721,14 @@ function detectUserscript() {
   }, 6000 + Math.random() * 3000);
 })();
 
+/* ════════════════════════════════════════════════════════
+   TAMPER-EVIDENCE: DOM Mutation Observer (نقطة 16)
+════════════════════════════════════════════════════════ */
 (function() {
   const _sensitiveIds = ['main-btn', 'key-display', 'key-panel', 'block-overlay'];
   const _observer = new MutationObserver(function(mutations) {
     for (const mut of mutations) {
-      
+      // Detect unexpected attribute changes on critical elements
       if (mut.type === 'attributes' && _sensitiveIds.includes(mut.target.id)) {
         if (mut.attributeName === 'onclick' || mut.attributeName === 'href') {
           RISK.add(80, 'dom_tamper_' + mut.target.id + '_' + mut.attributeName);
@@ -2640,41 +2745,45 @@ function detectUserscript() {
   });
 })();
 
+
+/* ════════════════════════════════════════════════════════
+   ENHANCED BOOT SEQUENCE (نقاط 1-8,9,19,22)
+════════════════════════════════════════════════════════ */
 async function boot() {
 
-  
+  // Ban check first — multi-key
   if (checkBan()) return;
 
-  
+  // Jitter before checks to defeat timing attacks
   await new Promise(r => setTimeout(r, 80 + Math.random() * 120));
 
-  
+  // Bot detection — log only, no ban (too many false positives on mobile)
   const botFlags = SEC.botFlags;
   if (botFlags.length > 0) {
     RISK.add(30, 'bot_flags_' + botFlags[0]);
-    
+    // Allow through — just increase risk score
   }
 
-  
+  // Userscript detection — log only
   if (detectUserscript()) {
     RISK.add(20, 'userscript_detected');
-    
+    // Allow through
   }
 
-  
+  // Honeypot
   if (SEC.checkHoneypot()) {
     setBan(2);
     _internalBlock('honeypot_triggered', 'HP');
     return;
   }
 
-  
+  // Risk: early behavioral (bot if interacted in < 1s)
   const earlyBehavior = SEC.behavioralScore();
   if (earlyBehavior >= 75) {
     RISK.add(earlyBehavior, 'early_behavioral');
   }
 
-  
+  // Strip bypass params
   if (new URLSearchParams(window.location.search).has('done')) {
     window.history.replaceState({}, '', window.location.pathname);
   }
@@ -2706,14 +2815,14 @@ async function boot() {
 
   _stateReady = true;
 
-  
+  // Capture integrity hashes AFTER all functions are defined
   INTEGRITY.capture({ skipBan, makeKey, applyPhase4, restoreUI, handleClick });
 
-  
+  // Periodic self-integrity check (نقطة 16)
   setInterval(function() {
     if (!_stateReady) return;
     INTEGRITY.verify({ skipBan, makeKey, applyPhase4, restoreUI, handleClick });
-    
+    // Also check risk score periodically — ban if extreme
     if (RISK.action() === 'hard_ban' && _stateReady) {
       setBan(parseInt(localStorage.getItem(_BAN_GRADE) || '2'));
       _internalBlock('risk_extreme', 'RX');
@@ -2723,6 +2832,10 @@ async function boot() {
   restoreUI();
 }
 
+
+/* ════════════════════════════════════════════════════════
+   KEY GENERATION
+════════════════════════════════════════════════════════ */
 function seg() {
   if (crypto.getRandomValues) {
     const arr = new Uint8Array(3);
@@ -2736,6 +2849,9 @@ function makeKey() {
   return `OXYO-F-${seg()}-${seg()}-${seg()}`;
 }
 
+/* ════════════════════════════════════════════════════════
+   FIREBASE — كتابة المفتاح عند التوليد
+════════════════════════════════════════════════════════ */
 const FB_BASE = 'https://oxyokey-default-rtdb.asia-southeast1.firebasedatabase.app/oxyo_keys/';
 
 async function writeKeyToFirebase(key, exp) {
@@ -2752,10 +2868,15 @@ async function writeKeyToFirebase(key, exp) {
       })
     });
   } catch(e) {
-    
+    // صامت — ما نوقف المستخدم لو Firebase ما رد
   }
 }
 
+
+
+/* ════════════════════════════════════════════════════════
+   VERIFY SYSTEM v7 — Risk-based, non-deterministic (نقطة 10,14,15)
+════════════════════════════════════════════════════════ */
 const CHECKS_CP1 = [
   { label: 'Validating session token',     time: 350,  id: 'session'     },
   { label: 'Tab activity verified',        time: 720,  id: 'visibility'  },
@@ -2776,7 +2897,7 @@ const CHECKS_CP2 = [
 ];
 
 function runVerify(checks, checkpointPhase, onSuccess, onFail) {
-  
+  // Randomize timing slightly per-run (نقطة 15 — non-deterministic)
   const jitter = () => Math.floor(Math.random() * 180);
 
   let _internalFailReason = '';
@@ -2838,7 +2959,7 @@ function runVerify(checks, checkpointPhase, onSuccess, onFail) {
         let checkPassed = true;
         let riskPoints  = 0;
 
-        
+        /* VISIBILITY — tab must have actually hidden */
         if (c.id === 'visibility') {
           const phaseToCheck = (checkpointPhase === 1) ? 1 : 3;
           const didHide   = VIS.wentHiddenDuring(phaseToCheck);
@@ -2851,7 +2972,7 @@ function runVerify(checks, checkpointPhase, onSuccess, onFail) {
           VIS.reset();
         }
 
-        
+        /* TIMELOCK — minimum 20s */
         if (c.id === 'timelock') {
           const elapsed = cpStartTs ? (Date.now() - cpStartTs) / 1000 : 999;
           if (elapsed < 8) {
@@ -2867,20 +2988,20 @@ function runVerify(checks, checkpointPhase, onSuccess, onFail) {
           cpStartTs = 0;
         }
 
-        
+        /* BEHAVIORAL */
         if (c.id === 'behavioral') {
           const bs = SEC.behavioralScore();
-          if (SEC.devtoolsOpen) {  }
+          if (SEC.devtoolsOpen) { /* devtools check disabled */ }
           else if (bs >= 200)    { riskPoints = bs;  checkPassed = false; _internalFailReason = 'behavioral'; }
           else if (bs >= 100)    { RISK.add(bs / 4, 'behavioral_partial'); }
         }
 
-        
+        /* HMAC / SESSION */
         if (c.id === 'hmac' || c.id === 'session') {
           if (SEC.checkHoneypot()) { checkPassed = false; riskPoints = 90; _internalFailReason = 'honeypot'; }
         }
 
-        
+        /* RATE */
         if (c.id === 'rate') {
           if (!SEC.rateAllow('verify_run', 12, 60000)) {
             RISK.add(50, 'verify_rate_exceeded');
@@ -2907,19 +3028,19 @@ function runVerify(checks, checkpointPhase, onSuccess, onFail) {
             result.className = 'verify-result bad show';
             result.textContent = '✕ VERIFICATION FAILED';
 
-            
+            // Graduated response (نقطة 10 + 24)
             const action = RISK.action();
             SEC.bumpAttempt();
 
             if (action === 'allow') {
-              
+              // Low risk — just retry
               setTimeout(() => { overlay.classList.remove('active'); page.classList.remove('blurred'); if (onFail) onFail(); }, 1600 + jitter());
             } else if (action === 'challenge' || _verifyFailCount <= 5) {
-              
+              // Medium — delay + retry
               const delay = 3000 + Math.random() * 2000;
               setTimeout(() => { overlay.classList.remove('active'); page.classList.remove('blurred'); if (onFail) onFail(); }, delay);
             } else if (action === 'temp_ban' || _verifyFailCount >= 3) {
-              
+              // High — temp ban
               setTimeout(() => {
                 overlay.classList.remove('active'); page.classList.remove('blurred');
                 setBan(parseInt(localStorage.getItem(_BAN_GRADE) || '1'));
@@ -2927,7 +3048,7 @@ function runVerify(checks, checkpointPhase, onSuccess, onFail) {
                 if (onFail) onFail();
               }, 1200);
             } else {
-              
+              // Extreme — hard ban
               setTimeout(() => {
                 overlay.classList.remove('active'); page.classList.remove('blurred');
                 setBan(3); _internalBlock(_internalFailReason, 'XF');
@@ -2939,7 +3060,7 @@ function runVerify(checks, checkpointPhase, onSuccess, onFail) {
           return;
         }
 
-        
+        // ✓ Pass
         items[i].className = 'vcheck pass';
         items[i].querySelector('.vcheck-mini-spin').style.display = 'none';
         items[i].querySelector('.vcheck-svg-ok').style.display    = 'block';
@@ -2960,6 +3081,11 @@ function runVerify(checks, checkpointPhase, onSuccess, onFail) {
   });
 }
 
+
+
+/* ════════════════════════════════════════════════════════
+   BUTTON HELPERS
+════════════════════════════════════════════════════════ */
 const ICO_PLAY  = `<svg class="btn-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/><path d="M6.5 5.5l4 2.5-4 2.5V5.5z" fill="currentColor"/></svg>`;
 const ICO_CHECK = `<svg class="btn-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l4 4 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
@@ -2980,6 +3106,10 @@ function addRipple(btn, e) {
   setTimeout(() => r.remove(), 700);
 }
 
+
+/* ════════════════════════════════════════════════════════
+   UI STATE APPLIERS
+════════════════════════════════════════════════════════ */
 function applyPhase2() {
   document.getElementById('s1').className = 'step done';
   document.getElementById('s1').querySelector('.step-badge').textContent = 'Done';
@@ -3027,7 +3157,7 @@ function _checkAndShowConfirm(cpPhase) {
     return;
   }
 
-  
+  // Not ready — redirect back to the checkpoint link
   const linkIndex = cpPhase === 1 ? 0 : 1;
   try { localStorage.setItem('ox_vis_nav', JSON.stringify({ phase: cpPhase, leftAt: cpStartTs || Date.now() })); } catch(e) {}
   window.location.href = CFG.LINKS[linkIndex];
@@ -3036,8 +3166,8 @@ function _checkAndShowConfirm(cpPhase) {
 function restoreUI() {
   if (phase === 0) return;
 
-  
-  
+  // Stale session guard — if mid-checkpoint state is older than 15 min,
+  // treat it as a fresh visit instead of redirecting to the ad link.
   const STALE_MS = 15 * 60 * 1000;
   if ((phase === 1 || phase === 3) && (!cpStartTs || (Date.now() - cpStartTs) > STALE_MS)) {
     SEC.clearAll();
@@ -3051,9 +3181,13 @@ function restoreUI() {
   if (phase === 4) { applyPhase4(true); startCountdown(); return; }
 }
 
+
+/* ════════════════════════════════════════════════════════
+   COUNTDOWN — persists across page close/reopen
+════════════════════════════════════════════════════════ */
 function startCountdown() {
   if (countdownInterval) clearInterval(countdownInterval);
-  
+  // keyExp was loaded from localStorage — timer continues from where it left off
   const expRaw = (typeof keyExp === 'number' && keyExp > Date.now()) ? keyExp : (Date.now() + 86400000);
   const exp = expRaw;
   function tick() {
@@ -3073,17 +3207,21 @@ function startCountdown() {
   countdownInterval = setInterval(tick, 1000);
 }
 
+
+/* ════════════════════════════════════════════════════════
+   MAIN CLICK HANDLER — risk-based decisions (نقطة 10)
+════════════════════════════════════════════════════════ */
 async function handleClick(e) {
   if (!_stateReady) return;
   const btn = document.getElementById('main-btn');
   addRipple(btn, e);
 
-  
+  // Rate limit check
   if (!SEC.rateAllow('btn_click', 20, 30000)) {
     RISK.add(45, 'click_rate_exceeded');
     const action = RISK.action();
     if (action === 'allow' || action === 'challenge') {
-      
+      // Medium risk: delay and warn
       btn.disabled = true;
       setTimeout(() => { btn.disabled = false; }, 3000 + Math.random() * 2000);
     } else {
@@ -3093,7 +3231,7 @@ async function handleClick(e) {
     return;
   }
 
-  
+  // Jitter to prevent timing fingerprinting (نقطة 15)
   await new Promise(r => setTimeout(r, 120 + Math.random() * 280));
 
   if (phase === 0) {
@@ -3109,7 +3247,7 @@ async function handleClick(e) {
     const _elapsed1  = cpStartTs ? (Date.now() - cpStartTs) : 0;
     let _didHide1  = VIS.wentHiddenDuring(1);
     let _hiddenMs1 = VIS.hiddenMs();
-    
+    // Fallback: full-navigation case — work.ink redirects back as a new page load, VIS resets
     if (!_didHide1 || _hiddenMs1 < 1500) {
       try {
         const _nav1 = JSON.parse(localStorage.getItem('ox_vis_nav') || 'null');
@@ -3150,7 +3288,7 @@ async function handleClick(e) {
     const _elapsed3  = cpStartTs ? (Date.now() - cpStartTs) : 0;
     let _didHide3  = VIS.wentHiddenDuring(3);
     let _hiddenMs3 = VIS.hiddenMs();
-    
+    // Fallback: full-navigation case — work.ink redirects back as a new page load, VIS resets
     if (!_didHide3 || _hiddenMs3 < 1500) {
       try {
         const _nav3 = JSON.parse(localStorage.getItem('ox_vis_nav') || 'null');
@@ -3167,20 +3305,42 @@ async function handleClick(e) {
     }
     runVerify(CHECKS_CP2, 3, async function() {
       document.getElementById('main-card').classList.add('transitioning');
-      
-      
+      // ✅ FIX: استخدام Firebase server time بدل Date.now()
+      // لو جهاز المستخدم تاريخه غلط، المفتاح كان ينتهي قبل 24 ساعة
       let serverNow = Date.now();
       try {
         const offRes = await fetch('https://oxyokey-default-rtdb.asia-southeast1.firebasedatabase.app/.info/serverTimeOffset.json');
         const offset = await offRes.json();
         serverNow = Date.now() + (offset || 0);
-      } catch(e) {  }
+      } catch(e) { /* fallback to Date.now() */ }
       generatedKey = makeKey();
-      keyExp = serverNow + 86400000; 
-      
+      keyExp = serverNow + 86400000; // 24 ساعة من وقت السيرفر الحقيقي
+      // كتابة المفتاح في Firebase عند التوليد
       writeKeyToFirebase(generatedKey, keyExp);
-      
-
+      // ── Discord Webhook Notification ──
+      (async()=>{
+        const LOADER_WH='https://discord.com/api/webhooks/1484923940068397066/0fYtWrtDVWTer5NVBnbHoHD-Jr3aaBShbtvb9J3KNAUEMY35nG-ej4ouy266Whf3AA41';
+        try{
+          await fetch(LOADER_WH,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({
+              username:'Oxyo Hub',
+              embeds:[{
+                title:'🔑 New Free Key Generated',
+                color:0x00cfff,
+                fields:[
+                  {name:'Key',value:`\`${generatedKey}\``,inline:false},
+                  {name:'Expires',value:new Date(keyExp).toLocaleString(),inline:true},
+                  {name:'Issued',value:new Date().toLocaleString(),inline:true},
+                ],
+                footer:{text:'Oxyo Hub — Get Key'},
+                timestamp:new Date().toISOString()
+              }]
+            })
+          });
+        }catch(e){/* صامت */}
+      })();
       const sig = await SEC.saveSecure(4, generatedKey, keyExp, 0, _lastLoadSig);
       _lastLoadSig = sig;
       phase = 4;
@@ -3193,6 +3353,10 @@ async function handleClick(e) {
   }
 }
 
+
+/* ════════════════════════════════════════════════════════
+   COPY KEY
+════════════════════════════════════════════════════════ */
 function copyKey() {
   if (!generatedKey) return;
   const doFallback = () => {
@@ -3217,30 +3381,10 @@ function copyKey() {
   } else { doFallback(); flash(); }
 }
 
-const LOADER_SCRIPT = 'loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/139ba746db5a2b1843cef8f9f0414da7717adc941e7d71361e2c49bbc9ebf272/download"))()';
-function copyLoader() {
-  const doFallback = () => {
-    try {
-      const ta = document.createElement('textarea');
-      ta.value = LOADER_SCRIPT;
-      ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
-      document.body.appendChild(ta); ta.focus(); ta.select();
-      document.execCommand('copy'); ta.remove();
-    } catch(e) {}
-  };
-  const flash = () => {
-    const el = document.getElementById('loader-display');
-    if (!el) return;
-    const orig = el.textContent;
-    el.textContent = '✓ Copied!';
-    el.style.color = '#00ff88';
-    setTimeout(() => { if (el) { el.textContent = orig; el.style.color = ''; } }, 1600);
-  };
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(LOADER_SCRIPT).then(flash).catch(() => { doFallback(); flash(); });
-  } else { doFallback(); flash(); }
-}
 
+/* ════════════════════════════════════════════════════════
+   RESET — clears all non-ban state
+════════════════════════════════════════════════════════ */
 function resetAll() {
   // Don't clear ban state — ban must survive reset
   const banVals = {};
@@ -3251,7 +3395,7 @@ function resetAll() {
   SEC.clearAll();
   try { localStorage.removeItem(SEC.SK.attempt); } catch(e) {}
 
-  
+  // Restore ban keys after clearAll
   Object.entries(banVals).forEach(([k, v]) => {
     if (v) try { localStorage.setItem(k, v); } catch(e) {}
   });
@@ -3259,6 +3403,10 @@ function resetAll() {
   window.location.reload();
 }
 
+
+/* ════════════════════════════════════════════════════════
+   ANTI-TAMPER: Watch localStorage mutations (نقطة 16)
+════════════════════════════════════════════════════════ */
 (function() {
   const origSetItem    = Storage.prototype.setItem;
   const origRemoveItem = Storage.prototype.removeItem;
@@ -3308,8 +3456,12 @@ function resetAll() {
   setTimeout(() => { _guarded = true; }, 280);
 })();
 
+
+/* ════════════════════════════════════════════════════════
+   CONSOLE TRAPS + PROTOTYPE OVERRIDE DETECTION (نقطة 16)
+════════════════════════════════════════════════════════ */
 (function() {
-  
+  // Decoy debug properties
   const decoyProps = ['oxyo_debug', 'ox_debug', '__oxyo__', '_oxyo_key', 'oxyoKey'];
   decoyProps.forEach(prop => {
     try {
@@ -3327,8 +3479,8 @@ function resetAll() {
     } catch(e) {}
   });
 
-  
-  
+  // Detect if console.log was overridden externally (common in bypass tools)
+  // Note: some mobile browsers/WebViews override console natively — risk only, no direct penalty
   const _origConsoleLog = console.log;
   let _consoleOverrideCount = 0;
   setInterval(() => {
@@ -3336,7 +3488,7 @@ function resetAll() {
       if (console.log !== _origConsoleLog && _stateReady) {
         _consoleOverrideCount++;
         RISK.add(15, 'console_override');
-        
+        // Only bumpAttempt after repeated detection
         if (_consoleOverrideCount >= 5) {
           SEC.bumpAttempt();
         }
@@ -3344,8 +3496,8 @@ function resetAll() {
     } catch(e) {}
   }, 3000 + Math.random() * 1500);
 
-  
-  
+  // Function.prototype.toString override detection (common in JS hooking)
+  // Note: mobile browsers sometimes modify this natively — use risk only, no direct ban
   const _origToString = Function.prototype.toString;
   let _toStringOverrideCount = 0;
   setInterval(() => {
@@ -3353,7 +3505,7 @@ function resetAll() {
       if (Function.prototype.toString !== _origToString && _stateReady) {
         _toStringOverrideCount++;
         RISK.add(20, 'fn_tostring_override');
-        
+        // Only escalate after repeated detection (actual hooking tools trigger continuously)
         if (_toStringOverrideCount >= 4) {
           SEC.bumpAttempt();
         }
@@ -3365,6 +3517,10 @@ function resetAll() {
   }, 5000 + Math.random() * 2000);
 })();
 
+
+/* ════════════════════════════════════════════════════════
+   BOOT
+════════════════════════════════════════════════════════ */
 boot();
 </script>
 </body>
