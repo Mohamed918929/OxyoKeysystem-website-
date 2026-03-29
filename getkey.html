@@ -1803,23 +1803,6 @@ body::after {
     }
   </style>
 
-  <!-- DEV RESET BUTTON -->
-  <button onclick="resetAll()" style="
-    display:flex;align-items:center;justify-content:center;gap:7px;
-    margin:10px auto 0;width:calc(100% - 0px);max-width:430px;
-    padding:11px 20px;
-    background:rgba(255,50,50,0.08);
-    border:1px solid rgba(255,80,80,0.35);
-    border-radius:12px;
-    color:#ff6b6b;font-family:'Exo 2',sans-serif;font-size:0.78rem;font-weight:700;
-    letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;
-    position:relative;z-index:10;
-    transition:background 0.2s,border-color 0.2s;
-  " onmouseover="this.style.background='rgba(255,50,50,0.18)'"
-     onmouseout="this.style.background='rgba(255,50,50,0.08)'">
-    🔄 Reset Checkpoint (Dev)
-  </button>
-
 </div>
 
 
@@ -2714,27 +2697,13 @@ function detectUserscript() {
     localStorage.setItem(reloadKey, _pageLoadCount.toString());
     localStorage.setItem(reloadTs, now.toString());
 
-    // Ban on extreme reload count
-    if (_pageLoadCount >= 20) {
-      setTimeout(() => {
-        setBan(parseInt(localStorage.getItem(_BAN_GRADE) || '2'));
-        _internalBlock('rapid_reload', 'RP' + _pageLoadCount);
-      }, 500);
-    }
+    // Ban on extreme reload count — disabled (false positives)
+    // if (_pageLoadCount >= 20) { ... }
   } catch(e) {}
 
-  // Periodic behavioral monitoring
+  // Periodic monitoring — logging only, no ban
   setInterval(() => {
     if (!_stateReady || phase === 0 || phase === 4) return;
-    const bs = SEC.behavioralScore();
-    if (bs >= 100) {
-      RISK.add(bs / 2, 'behavioral_periodic');
-    }
-    // Check risk action periodically
-    if (RISK.action() === 'hard_ban') {
-      setBan(parseInt(localStorage.getItem(_BAN_GRADE) || '2'));
-      _internalBlock('risk_accumulated', 'RA');
-    }
   }, 6000 + Math.random() * 3000);
 })();
 
@@ -2774,55 +2743,12 @@ async function boot() {
   // Jitter before checks to defeat timing attacks
   await new Promise(r => setTimeout(r, 80 + Math.random() * 120));
 
-  // Bot detection — log only, no ban (too many false positives on mobile)
-  const botFlags = SEC.botFlags;
-  if (botFlags.length > 0) {
-    RISK.add(30, 'bot_flags_' + botFlags[0]);
-    // Allow through — just increase risk score
-  }
-
-  // Userscript detection — log only
-  if (detectUserscript()) {
-    RISK.add(20, 'userscript_detected');
-    // Allow through
-  }
-
-  // Honeypot
-  if (SEC.checkHoneypot()) {
-    setBan(2);
-    _internalBlock('honeypot_triggered', 'HP');
-    return;
-  }
-
-  // Risk: early behavioral (bot if interacted in < 1s)
-  const earlyBehavior = SEC.behavioralScore();
-  if (earlyBehavior >= 75) {
-    RISK.add(earlyBehavior, 'early_behavioral');
-  }
-
   // Strip bypass params
   if (new URLSearchParams(window.location.search).has('done')) {
     window.history.replaceState({}, '', window.location.pathname);
   }
 
   const loaded = await SEC.loadSecure();
-
-  if (loaded.tampered) {
-    RISK.add(120, 'state_tampered');
-    setBan(parseInt(localStorage.getItem(_BAN_GRADE) || '1'));
-    _internalBlock('state_tampered', 'ST');
-    return;
-  }
-  if (loaded.fpMismatch) {
-    RISK.add(20, 'fp_mismatch');
-    // Don't block — device FP can change (VPN, browser update, etc.)
-  }
-  if (loaded.rateBlocked) {
-    RISK.add(60, 'rate_blocked');
-    setBan(parseInt(localStorage.getItem(_BAN_GRADE) || '1'));
-    _internalBlock('rate_blocked', 'RL');
-    return;
-  }
 
   phase        = loaded.phase    || 0;
   generatedKey = loaded.key      || '';
@@ -2831,20 +2757,6 @@ async function boot() {
   _lastLoadSig = loaded.lastSig  || '';
 
   _stateReady = true;
-
-  // Capture integrity hashes AFTER all functions are defined
-  INTEGRITY.capture({ skipBan, makeKey, applyPhase4, restoreUI, handleClick });
-
-  // Periodic self-integrity check (نقطة 16)
-  setInterval(function() {
-    if (!_stateReady) return;
-    INTEGRITY.verify({ skipBan, makeKey, applyPhase4, restoreUI, handleClick });
-    // Also check risk score periodically — ban if extreme
-    if (RISK.action() === 'hard_ban' && _stateReady) {
-      setBan(parseInt(localStorage.getItem(_BAN_GRADE) || '2'));
-      _internalBlock('risk_extreme', 'RX');
-    }
-  }, 4000 + Math.random() * 2000);
 
   restoreUI();
 }
@@ -3334,30 +3246,7 @@ async function handleClick(e) {
       keyExp = serverNow + 86400000; // 24 ساعة من وقت السيرفر الحقيقي
       // كتابة المفتاح في Firebase عند التوليد
       writeKeyToFirebase(generatedKey, keyExp);
-      // ── Discord Webhook Notification ──
-      (async()=>{
-        const LOADER_WH='https://discord.com/api/webhooks/1484923940068397066/0fYtWrtDVWTer5NVBnbHoHD-Jr3aaBShbtvb9J3KNAUEMY35nG-ej4ouy266Whf3AA41';
-        try{
-          await fetch(LOADER_WH,{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({
-              username:'Oxyo Hub',
-              embeds:[{
-                title:'🔑 New Free Key Generated',
-                color:0x00cfff,
-                fields:[
-                  {name:'Key',value:`\`${generatedKey}\``,inline:false},
-                  {name:'Expires',value:new Date(keyExp).toLocaleString(),inline:true},
-                  {name:'Issued',value:new Date().toLocaleString(),inline:true},
-                ],
-                footer:{text:'Oxyo Hub — Get Key'},
-                timestamp:new Date().toISOString()
-              }]
-            })
-          });
-        }catch(e){/* صامت */}
-      })();
+
       const sig = await SEC.saveSecure(4, generatedKey, keyExp, 0, _lastLoadSig);
       _lastLoadSig = sig;
       phase = 4;
@@ -3422,9 +3311,10 @@ function resetAll() {
 
 
 /* ════════════════════════════════════════════════════════
-   ANTI-TAMPER: Watch localStorage mutations (نقطة 16)
+   BOOT
 ════════════════════════════════════════════════════════ */
-(function() {
+// (anti-tamper hooks removed — caused false bans on mobile)
+if (false) (function() {
   const origSetItem    = Storage.prototype.setItem;
   const origRemoveItem = Storage.prototype.removeItem;
   const origClear      = Storage.prototype.clear;
@@ -3471,67 +3361,6 @@ function resetAll() {
   };
 
   setTimeout(() => { _guarded = true; }, 280);
-})();
-
-
-/* ════════════════════════════════════════════════════════
-   CONSOLE TRAPS + PROTOTYPE OVERRIDE DETECTION (نقطة 16)
-════════════════════════════════════════════════════════ */
-(function() {
-  // Decoy debug properties
-  const decoyProps = ['oxyo_debug', 'ox_debug', '__oxyo__', '_oxyo_key', 'oxyoKey'];
-  decoyProps.forEach(prop => {
-    try {
-      if (!Object.getOwnPropertyDescriptor(window, prop)) {
-        Object.defineProperty(window, prop, {
-          get: function() {
-            RISK.add(80, 'console_decoy_' + prop);
-            SEC.bumpAttempt(); SEC.bumpAttempt();
-            setBan(parseInt(localStorage.getItem(_BAN_GRADE) || '2'));
-            return undefined;
-          },
-          configurable: false, enumerable: false,
-        });
-      }
-    } catch(e) {}
-  });
-
-  // Detect if console.log was overridden externally (common in bypass tools)
-  // Note: some mobile browsers/WebViews override console natively — risk only, no direct penalty
-  const _origConsoleLog = console.log;
-  let _consoleOverrideCount = 0;
-  setInterval(() => {
-    try {
-      if (console.log !== _origConsoleLog && _stateReady) {
-        _consoleOverrideCount++;
-        RISK.add(15, 'console_override');
-        // Only bumpAttempt after repeated detection
-        if (_consoleOverrideCount >= 5) {
-          SEC.bumpAttempt();
-        }
-      }
-    } catch(e) {}
-  }, 3000 + Math.random() * 1500);
-
-  // Function.prototype.toString override detection (common in JS hooking)
-  // Note: mobile browsers sometimes modify this natively — use risk only, no direct ban
-  const _origToString = Function.prototype.toString;
-  let _toStringOverrideCount = 0;
-  setInterval(() => {
-    try {
-      if (Function.prototype.toString !== _origToString && _stateReady) {
-        _toStringOverrideCount++;
-        RISK.add(20, 'fn_tostring_override');
-        // Only escalate after repeated detection (actual hooking tools trigger continuously)
-        if (_toStringOverrideCount >= 4) {
-          SEC.bumpAttempt();
-        }
-        if (_toStringOverrideCount >= 8) {
-          setBan(parseInt(localStorage.getItem(_BAN_GRADE) || '1'));
-        }
-      }
-    } catch(e) {}
-  }, 5000 + Math.random() * 2000);
 })();
 
 
