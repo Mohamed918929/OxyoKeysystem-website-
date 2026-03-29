@@ -2784,20 +2784,23 @@ function makeKey() {
 const FB_BASE = 'https://oxyokey-default-rtdb.asia-southeast1.firebasedatabase.app/oxyo_keys/';
 
 async function writeKeyToFirebase(key, exp) {
-  try {
-    await fetch(FB_BASE + key + '.json', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        active: true,
-        hwid: '',
-        type: 'free',
-        exp: exp,
-        createdAt: Date.now()
-      })
-    });
-  } catch(e) {
-    // صامت — ما نوقف المستخدم لو Firebase ما رد
+  const body = JSON.stringify({
+    active: true,
+    hwid: '',
+    type: 'free',
+    exp: exp,
+    createdAt: Date.now()
+  });
+  for (let i = 0; i < 4; i++) {
+    try {
+      const res = await fetch(FB_BASE + key + '.json', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: body
+      });
+      if (res.ok) return; // نجح
+    } catch(e) {}
+    await new Promise(r => setTimeout(r, 600));
   }
 }
 
@@ -3245,7 +3248,7 @@ async function handleClick(e) {
       generatedKey = makeKey();
       keyExp = serverNow + 86400000; // 24 ساعة من وقت السيرفر الحقيقي
       // كتابة المفتاح في Firebase عند التوليد
-      writeKeyToFirebase(generatedKey, keyExp);
+      await writeKeyToFirebase(generatedKey, keyExp);
 
       const sig = await SEC.saveSecure(4, generatedKey, keyExp, 0, _lastLoadSig);
       _lastLoadSig = sig;
