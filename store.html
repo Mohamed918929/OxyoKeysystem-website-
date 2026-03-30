@@ -23,6 +23,7 @@
 body{background:radial-gradient(ellipse at 20% 20%,rgba(0,229,255,0.04) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(168,85,247,0.04) 0%,transparent 60%),#000005;}html,body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex-direction:column;align-items:center;}
 
+/* BG */
 .orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(50px);will-change:transform;}
 .orb-1{width:380px;height:380px;background:radial-gradient(circle,rgba(0,229,255,0.06),transparent 70%);top:-100px;left:-100px;animation:orbFloat 18s ease-in-out infinite;transform:translateZ(0);}
 .orb-2{width:460px;height:460px;background:radial-gradient(circle,rgba(168,85,247,0.04),transparent 70%);bottom:-150px;right:-100px;animation:orbFloat 22s ease-in-out infinite reverse;transform:translateZ(0);}
@@ -38,9 +39,11 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 .corner.tl .corner-dot{top:-1px;left:-1px;}.corner.tr .corner-dot{top:-1px;right:-1px;}
 .corner.bl .corner-dot{bottom:-1px;left:-1px;}.corner.br .corner-dot{bottom:-1px;right:-1px;}
 
+/* PAGE */
 .page{position:relative;z-index:10;width:100%;max-width:980px;display:flex;flex-direction:column;gap:28px;animation:fadeSlide 0.6s cubic-bezier(0.22,1,0.36,1) both;}
 @keyframes fadeSlide{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 
+/* HEADER */
 .header{display:flex;align-items:center;gap:11px;padding-top:6px;}
 .logo-wrap{position:relative;width:40px;height:40px;flex-shrink:0;}
 .logo-icon{width:40px;height:40px;background:linear-gradient(135deg,#00b8d4,var(--cyan),var(--cyan3));border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px var(--cyan-glo),0 0 50px rgba(0,229,255,0.2),inset 0 1px 0 rgba(255,255,255,0.25);animation:logoGlow 3s ease-in-out infinite alternate;position:relative;overflow:hidden;will-change:box-shadow;}
@@ -56,6 +59,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 @keyframes livePulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.65);}}
 .live-lbl{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--green);letter-spacing:0.14em;font-weight:600;}
 
+/* HERO */
 .hero{text-align:center;padding:6px 0 2px;}
 .hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.25em;color:var(--cyan);text-transform:uppercase;margin-bottom:14px;opacity:0.8;display:flex;align-items:center;justify-content:center;gap:14px;}
 .hero-eyebrow::before,.hero-eyebrow::after{content:'';width:44px;height:1px;}
@@ -66,6 +70,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 @keyframes goldGlow{from{filter:drop-shadow(0 0 10px rgba(255,215,0,0.5));}to{filter:drop-shadow(0 0 24px rgba(255,215,0,0.9));}}
 .hero p{font-size:0.82rem;color:var(--muted);max-width:420px;margin:0 auto;line-height:1.65;}
 
+/* PRICING GRID */
 .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;width:100%;}
 @media(max-width:900px){.pricing-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:520px){.pricing-grid{grid-template-columns:1fr;max-width:390px;margin:0 auto;}}
@@ -75,18 +80,22 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 .price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;opacity:0.85;}
 .price-card::after{content:'';position:absolute;inset:0;border-radius:20px;pointer-events:none;}
 
+/* Weekly */
 .price-card.weekly{box-shadow:0 0 40px rgba(0,229,255,0.05),0 20px 50px rgba(0,0,0,0.6);}
 .price-card.weekly::before{background:linear-gradient(90deg,transparent 5%,var(--cyan) 50%,transparent 95%);}
 .price-card.weekly:hover{box-shadow:0 0 60px rgba(0,229,255,0.14),0 20px 50px rgba(0,0,0,0.6);border-color:rgba(0,229,255,0.38);}
 
+/* Monthly */
 .price-card.monthly{border-color:rgba(168,85,247,0.3);box-shadow:0 0 40px rgba(168,85,247,0.08),0 20px 50px rgba(0,0,0,0.6);}
 .price-card.monthly::before{background:linear-gradient(90deg,transparent 5%,var(--purple) 50%,transparent 95%);}
 .price-card.monthly:hover{box-shadow:0 0 60px rgba(168,85,247,0.2),0 20px 50px rgba(0,0,0,0.6);border-color:rgba(168,85,247,0.55);}
 
+/* Lifetime */
 .price-card.lifetime{border-color:rgba(255,215,0,0.22);box-shadow:0 0 40px rgba(255,215,0,0.06),0 20px 50px rgba(0,0,0,0.6);}
 .price-card.lifetime::before{background:linear-gradient(90deg,transparent 5%,var(--gold) 50%,transparent 95%);}
 .price-card.lifetime:hover{box-shadow:0 0 60px rgba(255,215,0,0.16),0 20px 50px rgba(0,0,0,0.6);border-color:rgba(255,215,0,0.44);}
 
+/* Webhook / Lava */
 .price-card.webhook{border-color:rgba(255,107,53,0.22);box-shadow:0 0 40px rgba(255,107,53,0.06),0 20px 50px rgba(0,0,0,0.6);}
 .price-card.webhook::before{background:linear-gradient(90deg,transparent 5%,var(--orange) 50%,transparent 95%);}
 .price-card.webhook:hover{box-shadow:0 0 60px rgba(255,107,53,0.18),0 20px 50px rgba(0,0,0,0.6);border-color:rgba(255,107,53,0.48);}
@@ -101,9 +110,11 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 .btn-confirm.c-orange{background:linear-gradient(135deg,#c44a1a,var(--orange));color:#000;box-shadow:0 0 22px rgba(255,107,53,0.3);}
 .btn-confirm.c-orange:hover{box-shadow:0 0 38px rgba(255,107,53,0.52);transform:translateY(-1px);}
 
+/* Demo badge */
 .demo-badge{position:absolute;top:16px;left:16px;padding:2px 9px;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:0.42rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.28);color:var(--green);cursor:pointer;transition:all 0.2s;}
 .demo-badge:hover{background:rgba(0,255,136,0.16);}
 
+/* DEV PANEL */
 .dev-overlay{position:fixed;inset:0;z-index:9000;background:rgba(0,0,5,0.95);backdrop-filter:blur(20px);display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;}
 .dev-overlay.show{display:flex;}
 .dev-panel{width:100%;max-width:760px;background:rgba(6,8,15,0.98);border:1px solid rgba(255,0,110,0.35);border-radius:20px;padding:28px 24px;position:relative;box-shadow:0 0 80px rgba(255,0,110,0.12);}
@@ -133,6 +144,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 .dev-btn-clear{padding:8px 16px;background:rgba(255,0,110,0.08);border:1px solid rgba(255,0,110,0.28);border-radius:8px;color:var(--mag);font-family:'Exo 2',sans-serif;font-size:0.66rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.2s;margin-top:10px;}
 .dev-btn-clear:hover{background:rgba(255,0,110,0.18);}
 
+/* DEV LOCK */
 .dev-lock-overlay{position:fixed;inset:0;z-index:9100;background:rgba(0,0,5,0.97);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;padding:20px;}
 .dev-lock-overlay.show{display:flex;}
 .dev-lock-box{width:100%;max-width:340px;background:rgba(6,8,15,0.98);border:1px solid rgba(255,0,110,0.35);border-radius:20px;padding:32px 26px;text-align:center;}
@@ -147,6 +159,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 .dev-lock-err.show{display:block;}
 .dev-lock-cancel{margin-top:10px;background:none;border:none;color:var(--muted);font-size:0.62rem;cursor:pointer;font-family:'Exo 2',sans-serif;text-decoration:underline;}
 
+/* Popular Badge */
 .pop-badge{position:absolute;top:16px;right:16px;padding:3px 11px;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:0.48rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;background:rgba(168,85,247,0.14);border:1px solid rgba(168,85,247,0.4);color:var(--purple);animation:popPulse 2.5s ease-in-out infinite;}
 @keyframes popPulse{0%,100%{box-shadow:0 0 8px rgba(168,85,247,0.1);}50%{box-shadow:0 0 20px rgba(168,85,247,0.35);}}
 
@@ -177,6 +190,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 
 .card-actions{display:flex;flex-direction:column;gap:9px;}
 
+/* BUY BTN */
 .btn-buy{width:100%;padding:13px;border-radius:11px;border:none;font-family:'Exo 2',sans-serif;font-size:0.8rem;font-weight:800;letter-spacing:0.07em;text-transform:uppercase;cursor:pointer;transition:all 0.25s ease;position:relative;overflow:hidden;}
 .btn-buy::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.12),transparent);pointer-events:none;}
 .btn-buy.cyan-btn{background:linear-gradient(135deg,var(--cyan2),var(--cyan));color:#000;box-shadow:0 0 22px rgba(0,229,255,0.32),0 4px 16px rgba(0,0,0,0.35);}
@@ -187,6 +201,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 .btn-buy.gold-btn:hover{box-shadow:0 0 38px rgba(255,215,0,0.52),0 6px 22px rgba(0,0,0,0.4);transform:translateY(-1px);}
 .btn-buy:active{transform:scale(0.98);}
 
+/* VERIFY BTN */
 .btn-verify{width:100%;padding:11px;border-radius:11px;background:transparent;font-family:'Exo 2',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;cursor:pointer;transition:all 0.25s ease;}
 .weekly .btn-verify{border:1px solid rgba(0,229,255,0.28);color:var(--cyan);}
 .weekly .btn-verify:hover{background:var(--cyan-dim);border-color:rgba(0,229,255,0.5);}
@@ -195,6 +210,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 .lifetime .btn-verify{border:1px solid rgba(255,215,0,0.28);color:var(--gold);}
 .lifetime .btn-verify:hover{background:var(--gold-dim);border-color:rgba(255,215,0,0.5);}
 
+/* SAVED KEY */
 .saved-section{background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.18);border-radius:var(--r);padding:22px;display:none;position:relative;overflow:hidden;}
 .saved-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,255,136,0.5),transparent);}
 .saved-section.show{display:block;}
@@ -209,6 +225,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 .saved-btn.dl{background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.22);color:var(--gold);}
 .saved-btn.dl:hover{background:rgba(255,215,0,0.14);}
 
+/* MODAL */
 .modal-overlay{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,5,0.88);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transition:opacity 0.35s ease;}
 .modal-overlay.active{opacity:1;pointer-events:all;}
 .modal{width:100%;max-width:420px;background:rgba(6,8,15,0.96);border:1px solid var(--border2);border-radius:20px;padding:30px 26px 26px;position:relative;z-index:201;box-shadow:0 0 100px rgba(0,0,0,0.95),0 0 50px rgba(0,229,255,0.05);animation:modalIn 0.4s cubic-bezier(0.22,1,0.36,1) both;}
@@ -233,6 +250,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 .modal-err{margin-top:12px;padding:10px 14px;background:rgba(255,0,110,0.08);border:1px solid rgba(255,0,110,0.25);border-radius:8px;font-size:0.7rem;color:var(--mag);line-height:1.55;display:none;}
 .modal-err.show{display:block;}
 
+/* LOADING */
 .modal-loading{text-align:center;padding:24px 0;display:none;}
 .modal-loading.show{display:block;}
 .spin-ring{width:46px;height:46px;border:2px solid rgba(0,229,255,0.15);border-top-color:var(--cyan);border-radius:50%;animation:spin 0.9s linear infinite;margin:0 auto 16px;}
@@ -240,6 +258,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 .load-txt{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--cyan);letter-spacing:0.14em;animation:loadPulse 1.5s ease-in-out infinite;}
 @keyframes loadPulse{0%,100%{opacity:0.4;}50%{opacity:1;}}
 
+/* KEY REVEAL */
 .key-reveal{display:none;flex-direction:column;gap:14px;animation:revealAnim 0.6s cubic-bezier(0.22,1,0.36,1) both;}
 .key-reveal.show{display:flex;}
 @keyframes revealAnim{from{opacity:0;transform:translateY(12px) scale(0.97);}to{opacity:1;transform:translateY(0) scale(1);}}
@@ -262,6 +281,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 .btn-dl.show{display:flex;}
 .btn-dl:hover{background:rgba(255,215,0,0.14);box-shadow:0 0 18px rgba(255,215,0,0.2);}
 
+/* FOOTER */
 .footer{display:flex;align-items:center;justify-content:center;gap:12px;padding-top:4px;}
 .f-link{font-family:'JetBrains Mono',monospace;font-size:0.56rem;color:var(--muted);text-decoration:none;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.2s;display:flex;align-items:center;gap:5px;}
 .f-link:hover{color:var(--text);}
@@ -269,6 +289,8 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 </style>
 </head>
 <body>
+
+
 
 <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
 <div class="corner tl"><div class="corner-dot"></div></div>
@@ -278,6 +300,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 
 <div class="page" id="page">
 
+  <!-- Header -->
   <div class="header">
     <div class="logo-wrap">
       <div class="logo-icon">
@@ -298,14 +321,17 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
     </div>
   </div>
 
+  <!-- Hero -->
   <div class="hero">
     <div class="hero-eyebrow">Choose Your Plan</div>
     <h1>Unlock <span class="glow-gold">Premium</span></h1>
     <p>Buy a Roblox gamepass and verify instantly. Your key is generated automatically — no waiting.</p>
   </div>
 
+  <!-- Pricing Grid -->
   <div class="pricing-grid">
 
+    <!-- Weekly -->
     <div class="price-card weekly">
       <div class="card-icon">⚡</div>
       <div>
@@ -327,6 +353,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
       </div>
     </div>
 
+    <!-- Monthly (Popular) -->
     <div class="price-card monthly">
       <div class="pop-badge">★ Popular</div>
       <div class="card-icon">🌟</div>
@@ -350,6 +377,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
       </div>
     </div>
 
+    <!-- Lifetime -->
     <div class="price-card lifetime">
       <div class="card-icon">♾️</div>
       <div>
@@ -373,6 +401,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
       </div>
     </div>
 
+    <!-- Webhook / Lava -->
     <div class="price-card webhook">
       <div class="card-icon">🌋</div>
       <div>
@@ -398,11 +427,9 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
     </div>
 
   </div>
-
   <div style="text-align:center;margin-top:14px;margin-bottom:4px;font-size:0.65rem;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;">
     ⚠ Prices may vary depending on your country and regional Robux pricing.
   </div>
-
   <div class="saved-section" id="saved-section">
     <div class="saved-title">Your Active Key</div>
     <div class="saved-key-txt" id="saved-key-txt">—</div>
@@ -413,6 +440,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
     </div>
   </div>
 
+  <!-- Footer -->
   <div class="footer">
     <a class="f-link" href="https://discord.gg/xdv74qutx5" target="_blank" rel="noopener">
       <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9.3 2.4a5 5 0 0 0-7.6 5.9L1 10l1.8-.6A5 5 0 1 0 9.3 2.4z" stroke="currentColor" stroke-width="1.1"/></svg>
@@ -430,6 +458,8 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
 <div class="modal-overlay" id="verify-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeVerify()">×</button>
+
+    <!-- Form state -->
     <div id="vm-form">
       <div class="modal-eyebrow" id="vm-eyebrow">Verify Purchase</div>
       <h2 id="vm-title">Confirm Purchase</h2>
@@ -438,14 +468,19 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
       <input class="input-field" id="uname-inp" type="text" placeholder="YourRobloxName"
         autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
         onkeydown="if(event.key==='Enter')verifyPurchase()">
+      <!-- Honeypot (must stay empty) -->
       <input type="text" id="hp-field" name="website" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" tabindex="-1" autocomplete="off">
       <button class="btn-confirm c-cyan" id="vm-btn" onclick="verifyPurchase()">Verify & Get Key</button>
       <div class="modal-err" id="vm-err"></div>
     </div>
+
+    <!-- Loading state -->
     <div class="modal-loading" id="vm-loading">
       <div class="spin-ring"></div>
       <div class="load-txt" id="vm-load-txt">Checking ownership...</div>
     </div>
+
+    <!-- Key Reveal state -->
     <div class="key-reveal" id="vm-reveal">
       <div class="reveal-ok">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -471,6 +506,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
         Download Backup File
       </button>
     </div>
+
   </div>
 </div>
 
@@ -494,6 +530,8 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
     <button class="dev-close" onclick="devClose()">×</button>
     <div class="dev-title">⚠ Developer Only</div>
     <div class="dev-h">Oxyo Hub — Dev Panel</div>
+
+    <!-- Stats -->
     <div class="dev-section">
       <div class="dev-section-title">Overview</div>
       <div class="dev-grid" id="dev-stats-grid">
@@ -503,6 +541,8 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
         <div class="dev-stat"><div class="dev-stat-num" id="dev-lt-keys">0</div><div class="dev-stat-lbl">Lifetime Keys</div></div>
       </div>
     </div>
+
+    <!-- Pass IDs -->
     <div class="dev-section">
       <div class="dev-section-title">Gamepass IDs</div>
       <div class="dev-row"><span class="dev-label">Weekly</span><span class="dev-val" id="dp-weekly-id">—</span><button class="dev-copy-btn" onclick="devCopy('dp-weekly-id')">Copy</button></div>
@@ -510,17 +550,23 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
       <div class="dev-row"><span class="dev-label">Lifetime</span><span class="dev-val" id="dp-lifetime-id">—</span><button class="dev-copy-btn" onclick="devCopy('dp-lifetime-id')">Copy</button></div>
       <div class="dev-row"><span class="dev-label">Lava Webhook</span><span class="dev-val" id="dp-webhook-id">—</span><button class="dev-copy-btn" onclick="devCopy('dp-webhook-id')">Copy</button></div>
     </div>
+
+    <!-- Links -->
     <div class="dev-section">
       <div class="dev-section-title">Links</div>
       <div class="dev-row"><span class="dev-label">Discord</span><span class="dev-val">discord.gg/xdv74qutx5</span><button class="dev-copy-btn" onclick="devCopyText('discord.gg/xdv74qutx5')">Copy</button></div>
       <div class="dev-row"><span class="dev-label">YouTube</span><span class="dev-val">youtube.com/@mohammedahmedahrebat</span><button class="dev-copy-btn" onclick="devCopyText('https://youtube.com/@mohammedahmedahrebat')">Copy</button></div>
       <div class="dev-row"><span class="dev-label">Proxy</span><span class="dev-val">corsproxy.io/?url=</span><button class="dev-copy-btn" onclick="devCopyText('https://corsproxy.io/?url=')">Copy</button></div>
     </div>
+
+    <!-- Stored Keys -->
     <div class="dev-section">
       <div class="dev-section-title">Stored Keys (This Browser Only)</div>
       <div class="dev-keys-list" id="dev-keys-list"></div>
       <button class="dev-btn-clear" onclick="devClearKeys()">🗑 Clear Local Keys</button>
     </div>
+
+    <!-- Roblox User Verify (Anti-Scam) -->
     <div class="dev-section">
       <div class="dev-section-title">🔍 Verify Roblox User — Anti Scam</div>
       <div style="display:flex;gap:8px;margin-bottom:10px;">
@@ -531,12 +577,16 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
       </div>
       <div id="dev-uverify-result" style="display:none;"></div>
     </div>
+
+    <!-- Firebase Keys -->
     <div class="dev-section">
       <div class="dev-section-title">🔥 Firebase Keys (All Users)</div>
       <div id="dev-fb-loading" style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted);padding:8px;">جاري التحميل من Firebase...</div>
       <div class="dev-keys-list" id="dev-fb-keys-list" style="display:none;"></div>
       <div id="dev-fb-stats" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;"></div>
     </div>
+
+    <!-- Generate Test Key -->
     <div class="dev-section">
       <div class="dev-section-title">Generate Test Key</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -550,34 +600,53 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
         <button class="dev-copy-btn" onclick="devCopy('dev-gen-key')">Copy</button>
       </div>
     </div>
+
   </div>
 </div>
 
 <script>
+/* ══════════════════════════════════════════════
+   CONFIG
+══════════════════════════════════════════════ */
 const CFG = {
   GP: {
-    weekly:   { id:'1769377845', price:100,  label:'Weekly',       durationMs: 7*86400000 },
-    monthly:  { id:'1768270979', price:219,  label:'Monthly',      durationMs:30*86400000 },
-    lifetime: { id:'1767555091', price:500,  label:'Lifetime',     durationMs:-1          },
-    webhook:  { id:'1769569852', price:20,   label:'Lava Webhook', durationMs:-1          },
+    weekly:   { id:'1769377845', url:'https://www.roblox.com/game-pass/1769377845/Weekly',   price:100,  label:'Weekly',   durationMs: 7*86400000 },
+    monthly:  { id:'1768270979', url:'https://www.roblox.com/game-pass/1768270979/Monthly',  price:219,  label:'Monthly',  durationMs:30*86400000 },
+    lifetime: { id:'1767555091', url:'https://www.roblox.com/game-pass/1767555091/Lifetime', price:500,  label:'Lifetime', durationMs:-1          },
+    webhook:  { id:'1769569852', url:'https://www.roblox.com/game-pass/1769569852/Webhook',  price:20,   label:'Lava Webhook', durationMs:-1      },
   },
-  GP_URL: id => `https://www.roblox.com/game-pass/${id}/`,
+  GP_URL: type => CFG.GP[type].url,
+  PROXY:  'https://corsproxy.io/?url=',
 };
 
-const FB_BASE_PREM = 'https://oxyokey-default-rtdb.asia-southeast1.firebasedatabase.app/oxyo_keys/';
-const PREM_WH = 'https://discord.com/api/webhooks/1484923940068397066/0fYtWrtDVWTer5NVBnbHoHD-Jr3aaBShbtvb9J3KNAUEMY35nG-ej4ouy266Whf3AA41';
-const LIFETIME_EXP = 9999999999999;
-const WORKER_URL = 'https://oxyopremium.mohammadahmadqazplm.workers.dev';
+/* ══════════════════════════════════════════════
+   BACKGROUND CANVAS
+══════════════════════════════════════════════ */
 
-/* ══ FIREBASE WRITE — مفتاح واحد = جهاز واحد لكل الخطط ══ */
+
+/* ══════════════════════════════════════════════
+   CRYPTO UTILS
+══════════════════════════════════════════════ */
+
+const FB_BASE_PREM = 'https://oxyokey-default-rtdb.asia-southeast1.firebasedatabase.app/oxyo_keys/';
+
+const PREM_WH='https://discord.com/api/webhooks/1484923940068397066/0fYtWrtDVWTer5NVBnbHoHD-Jr3aaBShbtvb9J3KNAUEMY35nG-ej4ouy266Whf3AA41';
+
+// ✅ FIX: lifetime يحتاج exp كبير جداً بدل 0
+// 0 يجعل Lua loader يشوفه منتهي فوراً لأن serverNow > 0 دايماً
+// 9999999999999 = سنة 2286 — عملياً lifetime
+const LIFETIME_EXP = 9999999999999;
+
 async function writePremKeyToFirebase(key, type, exp) {
+  // ✅ FIX: استخدام Firebase server time offset بدل Date.now() مباشرة
   let serverNow = Date.now();
   try {
     const offRes = await fetch('https://oxyokey-default-rtdb.asia-southeast1.firebasedatabase.app/.info/serverTimeOffset.json');
     const offset = await offRes.json();
     serverNow = Date.now() + (offset || 0);
-  } catch(e) {}
+  } catch(e) { /* استخدام Date.now() كـ fallback */ }
 
+  // ✅ FIX الرئيسي: lifetime = LIFETIME_EXP بدل 0
   const finalExp = (exp === -1 || exp === undefined) ? LIFETIME_EXP : exp;
 
   let fbOk = false;
@@ -585,18 +654,31 @@ async function writePremKeyToFirebase(key, type, exp) {
     const res = await fetch(FB_BASE_PREM + key + '.json', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      // ✅ كل الخطط نفس البنية — مفتاح واحد جهاز واحد بدون استثناء
-      body: JSON.stringify({
-        active: true,
-        hwid: '',
-        type: type,
-        exp: finalExp,
-        createdAt: serverNow
-      })
+      body: JSON.stringify(
+        (type === 'lifetime' || type === 'webhook')
+        ? {
+            active: true,
+            hwid: '',
+            type: type,
+            exp: finalExp,
+            createdAt: serverNow,
+            maxDevices: 3,
+            ownerUserId: null,
+            hwids: {}
+          }
+        : {
+            active: true,
+            hwid: '',
+            type: type,
+            exp: finalExp,
+            createdAt: serverNow
+          }
+      )
     });
     fbOk = res.ok;
   } catch(e) { fbOk = false; }
 
+  // ── Discord notification ──
   const planColors = { weekly:0x00cfff, monthly:0xa855f7, lifetime:0xffd700, webhook:0xff6b35 };
   const planEmoji  = { weekly:'📅', monthly:'🗓️', lifetime:'♾️', webhook:'🔗' };
   try {
@@ -609,9 +691,9 @@ async function writePremKeyToFirebase(key, type, exp) {
           title: `${planEmoji[type]||'🔑'} New ${type.toUpperCase()} Key Generated`,
           color: planColors[type] || 0xffffff,
           fields: [
-            { name: '🔑 Key',      value: `\`${key}\``,  inline: false },
-            { name: '📦 Plan',     value: type.toUpperCase(), inline: true },
-            { name: '⏰ Expires',  value: type==='lifetime'?'Never (Lifetime)':new Date(finalExp).toLocaleString(), inline: true },
+            { name: '🔑 Key',     value: `\`${key}\``,           inline: false },
+            { name: '📦 Plan',    value: type.toUpperCase(),      inline: true  },
+            { name: '⏰ Expires', value: type==='lifetime'?'Never (Lifetime)':new Date(finalExp).toLocaleString(), inline: true },
             { name: '🔥 Firebase', value: fbOk ? '✅ Written OK' : '❌ FAILED — CHECK NOW', inline: true },
           ],
           footer: { text: 'Oxyo Hub — Premium Page' },
@@ -619,8 +701,9 @@ async function writePremKeyToFirebase(key, type, exp) {
         }]
       })
     });
-  } catch(e) {}
+  } catch(e) { /* صامت */ }
 
+  // ── لو Firebase فشل، أرسل تنبيه منفصل بدون embed ──
   if (!fbOk) {
     try {
       await fetch(PREM_WH, {
@@ -628,14 +711,12 @@ async function writePremKeyToFirebase(key, type, exp) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           username: 'Oxyo Hub — ALERT',
-          content: `⚠️ **FIREBASE WRITE FAILED** — Key: \`${key}\` Type: \`${type}\` — تحقق Firebase فوراً.`
+          content: `⚠️ **FIREBASE WRITE FAILED** — Key: \`${key}\` Type: \`${type}\` — المستخدم ما راح يقدر يستخدم المفتاح! تحقق Firebase فوراً.`
         })
       });
     } catch(e) {}
   }
 }
-
-/* ══ CRYPTO UTILS ══ */
 function _hash(str){
   let h=0x811c9dc5>>>0;
   for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0;}
@@ -643,6 +724,7 @@ function _hash(str){
   for(let i=str.length-1;i>=0;i--){h2^=str.charCodeAt(i);h2=Math.imul(h2,0x01000193)>>>0;}
   return (h>>>0).toString(16).padStart(8,'0')+(h2>>>0).toString(16).padStart(8,'0');
 }
+
 function _seg(){
   if(crypto.getRandomValues){
     const a=new Uint8Array(3);crypto.getRandomValues(a);
@@ -650,10 +732,12 @@ function _seg(){
   }
   return Math.random().toString(36).substr(2,4).toUpperCase();
 }
+
 function genKey(type){
   const p={weekly:'W',monthly:'M',lifetime:'L',webhook:'V'}[type]||'X';
   return `OXYO-${p}-${_seg()}-${_seg()}-${_seg()}`;
 }
+
 function getFingerprint(){
   return _hash([
     navigator.userAgent,navigator.language,
@@ -663,8 +747,11 @@ function getFingerprint(){
   ].join('|'));
 }
 
-/* ══ STORAGE ══ */
+/* ══════════════════════════════════════════════
+   STORAGE — multi-layer (lifetime gets 4 layers)
+══════════════════════════════════════════════ */
 const SK = 'oxyo_prem_v1';
+
 function saveKeyData(d){
   const j=JSON.stringify(d);
   try{localStorage.setItem(SK,j);}catch(e){}
@@ -678,6 +765,7 @@ function saveKeyData(d){
     }catch(e){}
   }
 }
+
 function loadKeyData(){
   const try_=fn=>{try{const r=fn();return r?JSON.parse(r):null;}catch(e){return null;}};
   const sources=[
@@ -687,17 +775,31 @@ function loadKeyData(){
     ()=>localStorage.getItem('oxyo_lt_b'),
     ()=>{const m=document.cookie.match(/oxyo_lt=([^;]+)/);return m?decodeURIComponent(m[1]):null;},
   ];
-  for(const fn of sources){const d=try_(fn);if(d&&d.key)return d;}
+  for(const fn of sources){
+    const d=try_(fn);
+    if(d&&d.key)return d;
+  }
   return null;
 }
+
 function isValid(d){
   if(!d||!d.key)return false;
+  // ✅ FIX: lifetime/webhook يستخدمون LIFETIME_EXP (9999999999999)
+  // أي exp أكبر من سنة 2200 = lifetime
   if(d.type==='lifetime'||d.type==='webhook')return true;
   if(d.exp && d.exp >= 9999999999000) return true;
   return d.exp&&Date.now()<d.exp;
 }
 
-/* ══ ROBLOX API ══ */
+/* ══════════════════════════════════════════════
+   ROBLOX API
+══════════════════════════════════════════════ */
+// ════════════════════════════════════════════════════
+// OXYO Cloudflare Worker Proxy — حط رابط الـ worker هنا
+// ════════════════════════════════════════════════════
+const WORKER_URL = 'https://oxyopremium.mohammadahmadqazplm.workers.dev';
+// ^ غير هذا لرابط الـ worker بتاعك بعد ما تنشره
+
 async function getUID(username) {
   try {
     const ctrl = new AbortController();
@@ -718,11 +820,14 @@ async function getUID(username) {
   } catch(e) {}
   throw new Error('NETWORK');
 }
+
 async function checkOwned(userId, gpId) {
   try {
     const ctrl = new AbortController();
     const tid  = setTimeout(() => ctrl.abort(), 12000);
-    const r = await fetch(`${WORKER_URL}/roblox/inventory/${userId}/${gpId}`, { signal: ctrl.signal });
+    const r = await fetch(`${WORKER_URL}/roblox/inventory/${userId}/${gpId}`, {
+      signal: ctrl.signal,
+    });
     clearTimeout(tid);
     if (r.status === 200) {
       const j = await r.json();
@@ -734,10 +839,14 @@ async function checkOwned(userId, gpId) {
   throw new Error('NETWORK');
 }
 
-/* ══ STATE ══ */
+/* ══════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════ */
 let _plan=null,_revKey=null,_revData=null;
 
-/* ══ RATE LIMITER ══ */
+/* ══════════════════════════════════════════════
+   RATE LIMITER (security)
+══════════════════════════════════════════════ */
 const _RL = {
   _hits: {},
   check(key, max, windowMs) {
@@ -750,19 +859,29 @@ const _RL = {
   }
 };
 
-/* ══ BUY / VERIFY ══ */
-function buyPlan(type){ window.open(CFG.GP_URL(CFG.GP[type].id),'_blank'); }
+/* ══════════════════════════════════════════════
+   BUY / VERIFY FLOW
+══════════════════════════════════════════════ */
+function buyPlan(type){
+  window.open(CFG.GP[type].url,'_blank');
+}
 
 function openVerify(type){
-  if(!_RL.check('open_verify',8,60000)){ alert('Too many attempts. Please wait a moment.'); return; }
+  if(!_RL.check('open_verify',8,60000)){
+    alert('Too many attempts. Please wait a moment.');
+    return;
+  }
   _plan=type;
   const gp=CFG.GP[type];
   const colors={weekly:'var(--cyan)',monthly:'var(--purple)',lifetime:'var(--gold)',webhook:'var(--orange)'};
   const cls={weekly:'c-cyan',monthly:'c-purple',lifetime:'c-gold',webhook:'c-orange'};
+
   document.getElementById('vm-eyebrow').style.color=colors[type];
   document.getElementById('vm-title').textContent=`Verify ${gp.label} Purchase`;
   document.getElementById('vm-sub').textContent=`Enter your Roblox username to confirm ownership of the ${gp.label} gamepass and get your key.`;
   document.getElementById('vm-btn').className=`btn-confirm ${cls[type]}`;
+
+  // Reset states
   _setFormState();
   document.getElementById('uname-inp').value='';
   document.getElementById('hp-field').value='';
@@ -770,6 +889,8 @@ function openVerify(type){
   document.getElementById('verify-modal').classList.add('active');
   setTimeout(()=>document.getElementById('uname-inp').focus(),400);
 }
+
+
 
 function _setFormState(){
   document.getElementById('vm-form').style.display='block';
@@ -794,17 +915,27 @@ function _showErr(msg){
 }
 
 async function verifyPurchase(){
+  // Honeypot check
   if(document.getElementById('hp-field').value!==''){return;}
-  if(!_RL.check('verify',4,60000)){ _showErr('Too many attempts. Please wait before trying again.'); return; }
+  // Rate limit
+  if(!_RL.check('verify',4,60000)){
+    _showErr('Too many attempts. Please wait before trying again.');
+    return;
+  }
+
   const uname=document.getElementById('uname-inp').value.trim();
   if(!uname){_showErr('Please enter your Roblox username.');return;}
   if(!/^[a-zA-Z0-9_]{3,20}$/.test(uname)){_showErr('Invalid username format.');return;}
+
   const gp=CFG.GP[_plan];
   _setLoadingState('Looking up your account...');
+
   try{
     const uid=await getUID(uname);
     if(!uid){_showErr('Username not found on Roblox. Check spelling and try again.');return;}
+
     _setLoadingState('Verifying gamepass ownership...');
+
     let owned;
     try{owned=await checkOwned(uid,gp.id);}
     catch(e){
@@ -814,13 +945,16 @@ async function verifyPurchase(){
       }
       throw e;
     }
+
     if(!owned){
       _showErr(`The ${gp.label} gamepass was not found on your account. Make sure the purchase went through and your inventory is set to Public.`);
       return;
     }
+
     _setLoadingState('Generating your key...');
     await new Promise(r=>setTimeout(r,700));
 
+    // ✅ تحقق أولاً إذا عنده مفتاح سابق في Firebase
     const unameLower = uname.toLowerCase();
     const unameKey   = unameLower.replace(/[^a-z0-9_]/g,'_');
     let key, kd;
@@ -828,7 +962,6 @@ async function verifyPurchase(){
     const exp = (_plan==='lifetime'||_plan==='webhook') ? LIFETIME_EXP : now+gp.durationMs;
     const fp  = getFingerprint();
 
-    // تحقق إذا عنده مفتاح سابق
     try {
       const existRes = await fetch(
         `https://oxyokey-default-rtdb.asia-southeast1.firebasedatabase.app/oxyo_userkeys/${unameKey}_${_plan}.json`
@@ -836,51 +969,66 @@ async function verifyPurchase(){
       if (existRes.ok) {
         const existData = await existRes.json();
         if (existData && existData.key) {
+          // رجّع نفس المفتاح القديم
           key = existData.key;
           kd  = { key, type: _plan, username: uname, fp, createdAt: existData.createdAt||now, exp: existData.exp||exp };
           saveKeyData(kd);
           _revKey=key; _revData=kd;
-          _showReveal(key, _plan, uname, existData.exp||exp);
-          if(new URLSearchParams(location.search).get('dev')==='1') setTimeout(devOpen,500);
-          return;
+          document.getElementById('vm-key-txt').textContent=key;
+          const chips=document.getElementById('vm-chips');
+          const isForever=(_plan==='lifetime'||_plan==='webhook');
+          chips.innerHTML=`<span class="chip ct">${_plan.toUpperCase()}</span><span class="chip cu">@${uname}</span>${isForever?'<span class="chip ce">♾ Forever</span>':`<span class="chip ce">Expires ${new Date(existData.exp||exp).toLocaleDateString()}</span>`}`;
+          const warn=document.getElementById('vm-warn');
+          const dlBtn=document.getElementById('vm-dl-btn');
+          if(isForever){warn.style.display='block';dlBtn.classList.add('show');}else{warn.style.display='none';dlBtn.classList.remove('show');}
+          _setRevealState(); updateSavedSection();
+
+// ✅ Dev shortcut: oxyo_premium.html?dev=1
+if(new URLSearchParams(location.search).get('dev')==='1'){
+  setTimeout(devOpen, 500);
+} return;
         }
       }
-    } catch(e) {}
+    } catch(e) { /* مو مشكلة، نولد مفتاح جديد */ }
 
     // مفتاح جديد
     key = genKey(_plan);
     kd  = {key, type:_plan, username:uname, usernameHash:_hash(uname.toLowerCase()+fp), fp, createdAt:now, exp};
     saveKeyData(kd);
     writePremKeyToFirebase(key, _plan, exp);
+
+    // حفظ ربط username → key في Firebase
     fetch(
       `https://oxyokey-default-rtdb.asia-southeast1.firebasedatabase.app/oxyo_userkeys/${unameKey}_${_plan}.json`,
       { method:'PUT', headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ key, exp, createdAt:now }) }
     ).catch(()=>{});
-    _revKey=key; _revData=kd;
-    _showReveal(key, _plan, uname, exp);
+    _revKey=key;_revData=kd;
+
+    // Populate reveal UI
+    document.getElementById('vm-key-txt').textContent=key;
+    const chips=document.getElementById('vm-chips');
+    const isForever = (_plan==='lifetime'||_plan==='webhook');
+    chips.innerHTML=`
+      <span class="chip ct">${_plan.toUpperCase()}</span>
+      <span class="chip cu">@${uname}</span>
+      ${isForever
+        ?'<span class="chip ce">♾ Forever</span>'
+        :`<span class="chip ce">Expires ${new Date(exp).toLocaleDateString()}</span>`
+      }`;
+    const warn=document.getElementById('vm-warn');
+    const dlBtn=document.getElementById('vm-dl-btn');
+    if(isForever){warn.style.display='block';dlBtn.classList.add('show');}
+    else{warn.style.display='none';dlBtn.classList.remove('show');}
+
+    _setRevealState();
+    updateSavedSection();
 
   }catch(e){
     _showErr(e.message==='NETWORK'
       ?'Network error — could not reach Roblox. Check your connection or contact us on Discord.'
       :'Unexpected error. Please try again or contact support on Discord.');
   }
-}
-
-function _showReveal(key, plan, uname, exp){
-  document.getElementById('vm-key-txt').textContent=key;
-  const chips=document.getElementById('vm-chips');
-  const isForever=(plan==='lifetime'||plan==='webhook'||exp>=9999999999000);
-  chips.innerHTML=`
-    <span class="chip ct">${plan.toUpperCase()}</span>
-    <span class="chip cu">@${uname}</span>
-    ${isForever?'<span class="chip ce">♾ Forever</span>':`<span class="chip ce">Expires ${new Date(exp).toLocaleDateString()}</span>`}`;
-  const warn=document.getElementById('vm-warn');
-  const dlBtn=document.getElementById('vm-dl-btn');
-  if(isForever){warn.style.display='block';dlBtn.classList.add('show');}
-  else{warn.style.display='none';dlBtn.classList.remove('show');}
-  _setRevealState();
-  updateSavedSection();
 }
 
 function copyRevealKey(){
@@ -893,7 +1041,7 @@ function copyRevealKey(){
 }
 
 function _buildBackupText(d){
-  const isForever=(d.type==='lifetime'||d.type==='webhook'||d.exp>=9999999999000);
+  const isForever = (d.type==='lifetime'||d.type==='webhook'||d.exp>=9999999999000);
   return [
     '═══════════════════════════════════════════',
     '          OXYO HUB — KEY BACKUP            ',
@@ -916,63 +1064,101 @@ function _buildBackupText(d){
     '═══════════════════════════════════════════',
   ].join('\n');
 }
-function downloadRevealBackup(){ if(!_revData)return; _downloadTxt(_buildBackupText(_revData),`OXYO-${_revData.type.toUpperCase()}-KEY-${_revData.username}.txt`); }
-function downloadSavedBackup(){ const d=loadKeyData(); if(!d)return; _downloadTxt(_buildBackupText(d),`OXYO-${d.type.toUpperCase()}-KEY-${d.username}.txt`); }
+
+function downloadRevealBackup(){
+  if(!_revData)return;
+  _downloadTxt(_buildBackupText(_revData),`OXYO-${_revData.type.toUpperCase()}-KEY-${_revData.username}.txt`);
+}
+
+function downloadSavedBackup(){
+  const d=loadKeyData();
+  if(!d)return;
+  _downloadTxt(_buildBackupText(d),`OXYO-${d.type.toUpperCase()}-KEY-${d.username}.txt`);
+}
+
 function _downloadTxt(content,filename){
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([content],{type:'text/plain'}));
-  a.download=filename;a.click();URL.revokeObjectURL(a.href);
+  a.download=filename;a.click();
+  URL.revokeObjectURL(a.href);
 }
 
-/* ══ SAVED KEY ══ */
+/* ══════════════════════════════════════════════
+   SAVED KEY SECTION
+══════════════════════════════════════════════ */
 function updateSavedSection(){
   const d=loadKeyData();
   const sec=document.getElementById('saved-section');
   if(!d||!isValid(d)){sec.classList.remove('show');return;}
+
   document.getElementById('saved-key-txt').textContent=d.key;
-  const isForeverSaved=(d.type==='lifetime'||d.type==='webhook'||d.exp>=9999999999000);
+  const isForeverSaved = (d.type==='lifetime'||d.type==='webhook'||d.exp>=9999999999000);
   const expStr=isForeverSaved?'Never expires':`Expires ${new Date(d.exp).toLocaleDateString()}`;
   document.getElementById('saved-key-meta').innerHTML=`
     <span>Plan: <b style="color:var(--text)">${d.type}</b></span>
     <span>User: <b style="color:var(--text)">@${d.username}</b></span>
     <span>${expStr}</span>`;
+
   const dlBtn=document.getElementById('saved-dl-btn');
-  if(isForeverSaved)dlBtn.style.display='inline-flex';else dlBtn.style.display='none';
+  if(d.type==='lifetime'||d.type==='webhook'||d.exp>=9999999999000)dlBtn.style.display='inline-flex';
+  else dlBtn.style.display='none';
+
   sec.classList.add('show');
 }
+
 function copySavedKey(){
-  const d=loadKeyData();if(!d)return;
+  const d=loadKeyData();
+  if(!d)return;
   _copy(d.key);
   const btn=document.querySelector('.saved-btn.copy');
-  const o=btn.textContent;btn.textContent='✓ Copied!';
+  const o=btn.textContent;
+  btn.textContent='✓ Copied!';
   setTimeout(()=>btn.textContent=o,1500);
 }
+
 function _copy(text){
   if(navigator.clipboard?.writeText){navigator.clipboard.writeText(text).catch(()=>_fallbackCopy(text));}
   else _fallbackCopy(text);
 }
 function _fallbackCopy(text){
-  const t=document.createElement('textarea');t.value=text;t.style.cssText='position:fixed;opacity:0';
-  document.body.appendChild(t);t.focus();t.select();try{document.execCommand('copy');}catch(e){}t.remove();
+  const t=document.createElement('textarea');
+  t.value=text;t.style.cssText='position:fixed;opacity:0';
+  document.body.appendChild(t);t.focus();t.select();
+  try{document.execCommand('copy');}catch(e){}
+  t.remove();
 }
 
-/* ══ CLOSE MODAL ══ */
-function closeVerify(){ document.getElementById('verify-modal').classList.remove('active'); }
+/* ══════════════════════════════════════════════
+   CLOSE VERIFY
+══════════════════════════════════════════════ */
+function closeVerify(){
+  document.getElementById('verify-modal').classList.remove('active');
+}
+
+/* ══════════════════════════════════════════════
+   KEYBOARD / OUTSIDE CLICK
+══════════════════════════════════════════════ */
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeVerify();});
 document.getElementById('verify-modal').addEventListener('click',function(e){if(e.target===this)closeVerify();});
 
-/* ══ DEV PANEL ══ */
+/* ══════════════════════════════════════════════
+   DEV PANEL
+══════════════════════════════════════════════ */
 (function(){
+  // Secret: click logo 7x within 3s
   const logo=document.querySelector('.logo-icon');
   let _clicks=0,_timer=null;
   if(logo){
     logo.style.cursor='pointer';
     logo.addEventListener('click',()=>{
-      _clicks++;clearTimeout(_timer);
+      _clicks++;
+      clearTimeout(_timer);
       _timer=setTimeout(()=>{_clicks=0;},3000);
       if(_clicks>=7){_clicks=0;clearTimeout(_timer);devLockOpen();}
     });
   }
+
+  // Dev password hash (FNV of "oxyo_dev_2025")
   const DEV_HASH='0000000089f30633';
   function _fhash(s){
     let h=0x811c9dc5>>>0;
@@ -981,6 +1167,7 @@ document.getElementById('verify-modal').addEventListener('click',function(e){if(
     for(let i=s.length-1;i>=0;i--){h2^=s.charCodeAt(i);h2=Math.imul(h2,0x01000193)>>>0;}
     return (((h>>>0)^(h2>>>0))>>>0).toString(16).padStart(16,'0').slice(0,16);
   }
+
   window.devLockOpen=function(){
     document.getElementById('dev-lock-inp').value='';
     document.getElementById('dev-lock-err').classList.remove('show');
@@ -1004,6 +1191,8 @@ document.getElementById('verify-modal').addEventListener('click',function(e){if(
     document.getElementById('dp-monthly-id').textContent=CFG.GP.monthly.id;
     document.getElementById('dp-lifetime-id').textContent=CFG.GP.lifetime.id;
     document.getElementById('dp-webhook-id').textContent=CFG.GP.webhook.id;
+
+    // Local keys
     const allKeys=[];
     const scanFns=[()=>localStorage.getItem('oxyo_prem_v1'),()=>localStorage.getItem('oxyo_lt_a'),()=>localStorage.getItem('oxyo_lt_b')];
     const seen=new Set();
@@ -1019,14 +1208,19 @@ document.getElementById('verify-modal').addEventListener('click',function(e){if(
     list.innerHTML=allKeys.length===0
       ?'<div class="dev-empty">No keys in this browser</div>'
       :allKeys.map(d=>`<div class="dev-key-row"><div class="dev-key-val">${d.key}</div><div class="dev-key-meta"><span>Type: <b>${d.type}</b></span><span>User: <b>@${d.username||'—'}</b></span><span>${d.type==='lifetime'?'♾ Never':'Exp: '+(d.exp?new Date(d.exp).toLocaleDateString():'?')}</span></div></div>`).join('');
+
     document.getElementById('dev-overlay').classList.add('show');
     devLoadFirebaseKeys();
   };
+
+  // ─── Firebase: جيب كل الـ keys ─────────────────
   window.devLoadFirebaseKeys=async function(){
     const loadEl=document.getElementById('dev-fb-loading');
     const listEl=document.getElementById('dev-fb-keys-list');
     const statsEl=document.getElementById('dev-fb-stats');
-    loadEl.style.display='block';listEl.style.display='none';statsEl.innerHTML='';
+    loadEl.style.display='block';
+    listEl.style.display='none';
+    statsEl.innerHTML='';
     try{
       const res=await fetch('https://oxyokey-default-rtdb.asia-southeast1.firebasedatabase.app/oxyo_keys.json');
       const data=await res.json();
@@ -1037,7 +1231,8 @@ document.getElementById('verify-modal').addEventListener('click',function(e){if(
       listEl.innerHTML=entries.map(([key,val])=>{
         const isLt=(val.type==='lifetime'||val.type==='webhook'||(val.exp&&val.exp>=9999999999000));
         const alive=isLt||(val.exp&&now<val.exp);
-        if(isLt)fbLt++;if(alive)fbActive++;else fbExpired++;
+        if(isLt)fbLt++;
+        if(alive)fbActive++;else fbExpired++;
         const expTxt=isLt?'♾ Forever':val.exp?new Date(val.exp).toLocaleDateString():'?';
         const statusColor=alive?'var(--green)':'var(--mag)';
         const statusTxt=alive?'✅ Active':'❌ Expired';
@@ -1056,9 +1251,14 @@ document.getElementById('verify-modal').addEventListener('click',function(e){if(
       document.getElementById('dev-active-keys').textContent=fbActive;
       document.getElementById('dev-expired-keys').textContent=fbExpired;
       document.getElementById('dev-lt-keys').textContent=fbLt;
-      loadEl.style.display='none';listEl.style.display='flex';
-    }catch(e){ loadEl.textContent='❌ فشل جلب Firebase — تحقق الاتصال.'; }
+      loadEl.style.display='none';
+      listEl.style.display='flex';
+    }catch(e){
+      loadEl.textContent='❌ فشل جلب Firebase — تحقق الاتصال.';
+    }
   };
+
+  // ─── Anti-Scam: تحقق اسم روبلوكس ─────────────────
   window.devVerifyUser=async function(){
     const uname=document.getElementById('dev-uname-inp').value.trim();
     const res=document.getElementById('dev-uverify-result');
@@ -1066,15 +1266,19 @@ document.getElementById('verify-modal').addEventListener('click',function(e){if(
     res.style.display='block';
     res.innerHTML='<div style="font-family:\'JetBrains Mono\',monospace;font-size:0.65rem;color:var(--muted);padding:8px;">جاري التحقق...</div>';
     try{
+      // جيب الـ UID
       const uid=await getUID(uname);
       if(!uid){
         res.innerHTML=`<div style="padding:12px;background:rgba(255,0,110,0.06);border:1px solid rgba(255,0,110,0.25);border-radius:8px;font-size:0.72rem;color:var(--mag);">❌ اسم غلط — ما في حساب روبلوكس باسم <b>${uname}</b></div>`;
         return;
       }
+      // تحقق من كل الـ gamepasses
       const plans=Object.entries(CFG.GP);
       const results=await Promise.all(plans.map(async([type,gp])=>{
-        try{const owned=await checkOwned(uid,gp.id);return{type,label:gp.label,owned};}
-        catch(e){return{type,label:gp.label,owned:false,err:true};}
+        try{
+          const owned=await checkOwned(uid,gp.id);
+          return{type,label:gp.label,owned};
+        }catch(e){return{type,label:gp.label,owned:false,err:true};}
       }));
       const hasAny=results.some(r=>r.owned);
       const statusBg=hasAny?'rgba(0,255,136,0.06)':'rgba(255,0,110,0.06)';
@@ -1093,18 +1297,23 @@ document.getElementById('verify-modal').addEventListener('click',function(e){if(
                 <span style="color:${r.owned?planColors[r.type]:'var(--muted)'};font-weight:700;min-width:90px;">${r.label}</span>
                 <span style="color:${r.owned?'var(--green)':'var(--muted)'};">${r.owned?'✅ يملكه':'✗ ما اشترى'}</span>
                 ${r.err?'<span style="color:var(--mag);font-size:0.62rem;">(تعذر التحقق)</span>':''}
-              </div>`).join('')}
+              </div>
+            `).join('')}
           </div>
         </div>`;
     }catch(e){
       res.innerHTML=`<div style="padding:10px;background:rgba(255,0,110,0.06);border:1px solid rgba(255,0,110,0.2);border-radius:8px;font-size:0.7rem;color:var(--mag);">❌ خطأ في الاتصال — تحقق من inventory المستخدم (لازم يكون Public)</div>`;
     }
   };
+
   window.devClose=function(){document.getElementById('dev-overlay').classList.remove('show');};
   window.devCopy=function(id){
-    const el=document.getElementById(id);if(!el)return;
+    const el=document.getElementById(id);
+    if(!el)return;
     devCopyText(el.textContent);
-    const o=el.textContent;el.textContent='✓ Copied!';setTimeout(()=>el.textContent=o,1200);
+    const o=el.textContent;
+    el.textContent='✓ Copied!';
+    setTimeout(()=>el.textContent=o,1200);
   };
   window.devCopyText=function(text){
     if(navigator.clipboard?.writeText)navigator.clipboard.writeText(text).catch(()=>{});
@@ -1121,11 +1330,13 @@ document.getElementById('verify-modal').addEventListener('click',function(e){if(
     document.getElementById('dev-gen-key').textContent=k;
     document.getElementById('dev-gen-row').style.display='flex';
     const isLt=(type==='lifetime'||type==='webhook');
-    const exp=isLt?LIFETIME_EXP:Date.now()+(type==='weekly'?7:30)*86400000;
+    const exp=isLt?9999999999999:Date.now()+(type==='weekly'?7:30)*86400000;
     try{
       await fetch('https://oxyokey-default-rtdb.asia-southeast1.firebasedatabase.app/oxyo_keys/'+k+'.json',{
         method:'PUT',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({active:true,type,exp,hwid:'',createdAt:Date.now()})
+        body:JSON.stringify(isLt
+          ?{active:true,type,exp,hwid:'',createdAt:Date.now(),maxDevices:3,ownerUserId:null,hwids:{}}
+          :{active:true,type,exp,hwid:'',createdAt:Date.now()})
       });
       const row=document.getElementById('dev-gen-row');
       let fb=row.querySelector('.fb-status');
@@ -1140,9 +1351,13 @@ document.getElementById('verify-modal').addEventListener('click',function(e){if(
   };
 })();
 
-/* ══ BOOT ══ */
+/* ══════════════════════════════════════════════
+   BOOT
+══════════════════════════════════════════════ */
 updateSavedSection();
 </script>
+
+
 
 <div style="position:fixed;bottom:0;left:0;right:0;background:rgba(0,229,255,0.06);border-top:1px solid rgba(0,229,255,0.15);padding:8px 16px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(0,229,255,0.5);z-index:999;">
   ⚠ This page verifies your Robux purchase and generates a Premium key — it does not grant Premium features directly. Open the loader in Roblox and enter your key to activate.
