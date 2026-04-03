@@ -379,8 +379,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
     </div>
 
     <!-- Lifetime -->
-    <div class="price-card lifetime">
-
+    <div class="price-card lifetime" style="border-color:rgba(255,215,0,0.55);box-shadow:0 0 60px rgba(255,215,0,0.18),0 20px 50px rgba(0,0,0,0.6);position:relative;">
       <div>
         <div class="card-icon">♾️</div>
       </div>
@@ -402,7 +401,7 @@ body{min-height:100vh;padding:20px 16px 50px;position:relative;display:flex;flex
         <div class="feat"><div class="feat-dot"></div>⚡ Early access to unreleased Oxyo scripts</div>
       </div>
       <div class="card-actions">
-        <button class="btn-buy gold-btn" onclick="buyPlan('lifetime')">Buy Now — 500 R$</button>
+        <button class="btn-buy gold-btn" onclick="buyPlan('lifetime')" style="font-size:0.85rem;padding:15px;box-shadow:0 0 32px rgba(255,215,0,0.5),0 4px 16px rgba(0,0,0,0.35);">♾️ Buy Now — 500 R$</button>
         <button class="btn-verify" onclick="openVerify('lifetime')">✓ I've Purchased</button>
       </div>
     </div>
@@ -932,6 +931,13 @@ async function verifyPurchase(){
   const uname=document.getElementById('uname-inp').value.trim();
   if(!uname){_showErr('Please enter your Roblox username.');return;}
   if(!/^[a-zA-Z0-9_]{3,20}$/.test(uname)){_showErr('Invalid username format.');return;}
+
+  // Blacklisted usernames (owners / staff accounts)
+  const BLACKLIST=['mohammedqazplm5'];
+  if(BLACKLIST.includes(uname.toLowerCase())){
+    _showErr('This username cannot be used for verification.');
+    return;
+  }
 
   const gp=CFG.GP[_plan];
   _setLoadingState('Looking up your account...');
