@@ -981,24 +981,9 @@ async function verifyPurchase(){
       if (existRes.ok) {
         const existData = await existRes.json();
         if (existData && existData.key) {
-          // رجّع نفس المفتاح القديم
-          key = existData.key;
-          kd  = { key, type: _plan, username: uname, fp, createdAt: existData.createdAt||now, exp: existData.exp||exp };
-          saveKeyData(kd);
-          _revKey=key; _revData=kd;
-          document.getElementById('vm-key-txt').textContent=key;
-          const chips=document.getElementById('vm-chips');
-          const isForever=(_plan==='lifetime'||_plan==='webhook');
-          chips.innerHTML=`<span class="chip ct">${_plan.toUpperCase()}</span><span class="chip cu">@${uname}</span>${isForever?'<span class="chip ce">♾ Forever</span>':`<span class="chip ce">Expires ${new Date(existData.exp||exp).toLocaleDateString()}</span>`}`;
-          const warn=document.getElementById('vm-warn');
-          const dlBtn=document.getElementById('vm-dl-btn');
-          if(isForever){warn.style.display='block';dlBtn.classList.add('show');}else{warn.style.display='none';dlBtn.classList.remove('show');}
-          _setRevealState(); updateSavedSection();
-
-// ✅ Dev shortcut: oxyo_premium.html?dev=1
-if(new URLSearchParams(location.search).get('dev')==='1'){
-  setTimeout(devOpen, 500);
-} return;
+          // هذا الاسم عنده مفتاح بالفعل — امنع
+          _showErr('This username already has a key. If this is your account, contact support.');
+          return;
         }
       }
     } catch(e) { /* مو مشكلة، نولد مفتاح جديد */ }
