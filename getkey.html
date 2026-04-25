@@ -4086,13 +4086,12 @@ hopAquaToggleRef = HopTab:CreateToggle({
                             Duration = 6, Image = 4483362458,
                         })
 
-                        local waited2 = 0
-                        while waited2 < queuedSecs + 10
+                        local _aquaLoopEnd = tick() + queuedSecs + 35
+                        while tick() < _aquaLoopEnd
                             and getgenv().OxyoAutoHopAqua
                             and not getgenv().OxyoHopAquaStopped
                             and not _isAquaActive() do
                             task.wait(2)
-                            waited2 = waited2 + 2
                         end
 
                         continue
@@ -7366,8 +7365,9 @@ end
 
 _isAquaActive = function()
     if workspace:GetAttribute("AquaEventActive") == true then return true end
-    if workspace:GetAttribute("AquaEvent") == true then return true end
+    if workspace:GetAttribute("AquaEvent")       == true then return true end
 
+    -- Check ActiveEvents JSON attribute
     local ok, found = pcall(function()
         local json = workspace:GetAttribute("ActiveEvents")
         if not json or json == "" then return false end
@@ -7377,7 +7377,41 @@ _isAquaActive = function()
         end
         return false
     end)
-    return ok and found or false
+    if ok and found then return true end
+
+    -- Check EventTimerController for an active Aqua timer
+    local ok2, found2 = pcall(function()
+        local etc = _etcCached
+        if not etc then
+            etc = require(game:GetService("ReplicatedStorage").Modules.EventTimerController)
+            _etcCached = etc
+        end
+        if not etc or not etc.OnGoingTimers then return false end
+        for _, timer in pairs(etc.OnGoingTimers) do
+            local rn   = tostring(timer.RealName or ""):lower()
+            local trem = tonumber(timer.TimeRemaining) or 0
+            local ui   = timer.UI
+            local name = ""
+            if typeof(ui) == "Instance" then
+                local nl = ui:FindFirstChild("NameLabel")
+                if nl and nl:IsA("TextLabel") then name = nl.Text:lower() end
+            end
+            if (rn:find("aqua") or name:find("aqua")) and trem > 0 then
+                return true
+            end
+        end
+        return false
+    end)
+    if ok2 and found2 then return true end
+
+    -- Check if AquaEvent folder exists in GameFolder (event is physically present)
+    local ok3, found3 = pcall(function()
+        local gf = workspace:FindFirstChild("GameFolder")
+        return gf and gf:FindFirstChild("AquaEvent") ~= nil
+    end)
+    if ok3 and found3 then return true end
+
+    return false
 end
 
 _getAquaQueuedTime = function()
@@ -7746,13 +7780,12 @@ if getgenv().OxyoAutoHopAqua == true and not getgenv().OxyoHopAquaStopped then
                         Content = string.format("Queued in %dm %ds — waiting on this server!", mins, secs),
                         Duration = 6, Image = 4483362458,
                     })
-                    local waited2 = 0
-                    while waited2 < queuedSecs + 10
+                    local _aquaLoopEnd2 = tick() + queuedSecs + 35
+                    while tick() < _aquaLoopEnd2
                         and getgenv().OxyoAutoHopAqua
                         and not getgenv().OxyoHopAquaStopped
                         and not _isAquaActive() do
                         task.wait(2)
-                        waited2 = waited2 + 2
                     end
                     continue
                 end
